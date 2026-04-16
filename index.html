@@ -15,7 +15,7 @@
 
 <body>
     <!-- create an SVG canvas for us to modify -->
-    <div id="container">
+    <!-- <div id="container">
         <div id="div1">
             <h2>This class has 30 students</h2>
             <p>Each black box represents an individual student in our <b>"Intro to Information Visualization"</b> class.
@@ -42,7 +42,15 @@
 
     <div class="fixed">
         <svg id="canvas" width="500" height="500"></svg>
+    </div> -->
+
+    <div id="fullpage">
+        <div class="section active">Some section</div>
+        <div class="section">Some section</div>
+        <div class="section">Some section</div>
+        <div class="section">Some section</div>
     </div>
+
 
     <script src="./scrolly.js"></script>
     <script src="./map.js"></script>
@@ -55,6 +63,14 @@
     <!-- <script src="vendors/easings.min.js"></script> -->
 
     <script type="text/javascript" src="js/fullpage.js"></script>
+
+    <script>
+        new fullpage('#fullpage', {
+            //options here
+            autoScrolling:true,
+            scrollHorizontally: true
+        });
+    </script>
 
 </body>
 
