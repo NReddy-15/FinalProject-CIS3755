@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -10,14 +11,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.js"></script>
     <link rel="stylesheet" href="./style.css">
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- create an SVG canvas for us to modify -->
     <div id="container">
         <div id="div1">
             <h2>This class has 30 students</h2>
-            <p>Each black box represents an individual student in our <b>"Intro to Information Visualization"</b> class.</p>
+            <p>Each black box represents an individual student in our <b>"Intro to Information Visualization"</b> class.
+            </p>
         </div>
         <div id="div2">
             <h2>Brown eyes</h2>
@@ -33,18 +35,20 @@
         </div>
         <div id="div5">
             <h1>Credits</h1>
-            <p>Stephen MacNeil</p>
-            <p>Baron Watts</p>
-            <p>Russell Goldenberg</p>
-            <p>Totally Vic</p>
+            <p>ABGs</p>
 
         </div>
     </div>
+
     <div class="fixed">
         <svg id="canvas" width="500" height="500"></svg>
     </div>
-        
-    <!-- load our custom D3 code (must happen after D3 is loaded) -->
+
     <script src="./scrolly.js"></script>
-  </body>
+    <script src="./map.js"></script>
+    <script src="./dashboard.js"></script>
+    <script src="./timeline.js"></script>
+
+</body>
+
 </html>
