@@ -1,16 +1,20 @@
 function renderHexbin(selectedGenre) {
 
+    d3.select("#hexbin").selectAll("*").remove();
+
     console.log("THIS IS THE GENRE: " + selectedGenre);
 
-    const margin = {top: 40, right: 30, bottom: 50, left: 60},
-      width = 1200 - margin.left - margin.right,
-      height = 800 - margin.top - margin.bottom;
+    const margin = {top: 60, right: 30, bottom: 50, left: 60},
+      width = 1100 - margin.left - margin.right,
+      height = 700 - margin.top - margin.bottom;
 
     const svg = d3.select("#hexbin")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    
 
     svg.append("defs").append("clipPath")
         .attr("id", "clip")
@@ -103,9 +107,16 @@ function renderHexbin(selectedGenre) {
             .call(d3.axisLeft(y));
 
         svg.append('text') //x-axis
+            .attr('class', 'title') //Optional: change font size and font weight
+            .attr('y', height - 600) //add to the bottom of graph (-15 to add it above axis)
+            .attr('x', width/2) //add to the end of X-axis (offsets the width of text)  
+            .text('Popularity vs Quality')
+            .style('font-size', '25px');
+
+        svg.append('text') //x-axis
             .attr('class', 'axis-title') //Optional: change font size and font weight
-            .attr('y', height + 30) //add to the bottom of graph (-15 to add it above axis)
-            .attr('x', width - 600) //add to the end of X-axis (offsets the width of text)  
+            .attr('y', height + 35) //add to the bottom of graph (-15 to add it above axis)
+            .attr('x', width/2) //add to the end of X-axis (offsets the width of text)  
             .text('Ratings Count');
 
         svg.append('text') //y-axis

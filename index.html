@@ -30,11 +30,17 @@
             </div>
         </div>
         <div class="section">
-            <div class="container">
-                <svg id="hexbin" width="1200" height="800"></svg>
-                <button onclick="renderHexbin('All')">All</button>
-                <button onclick="renderHexbin('Fiction')">Fiction</button>
-                <button onclick="renderHexbin('Nonfiction')">Nonfiction</button>
+            <div class="container flexbox">
+                <svg id="hexbin" width="1100" height="700"></svg>
+                <div>
+                    <button onclick="renderHexbin('All')">All</button>
+                    <br />
+                    <br />
+                    <button onclick="renderHexbin('Fiction')">Fiction</button>
+                    <br />
+                    <br />
+                    <button onclick="renderHexbin('Nonfiction')">Nonfiction</button>
+                </div>
             </div>
             
         </div>
@@ -65,7 +71,7 @@
             scrollHorizontally: true
         });
 
-        //renderHexbin("All");
+        renderHexbin("All");
     </script>
 
 </body>
