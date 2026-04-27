@@ -55,6 +55,8 @@ function renderHexbin(selectedGenre) {
             ([genre, count]) => ({ genre, count })
         );
 
+        genreArray.sort((a, b) => b.count - a.count); 
+
         console.log("Genre Table:")
         console.table(genreArray)
 
@@ -84,7 +86,15 @@ function renderHexbin(selectedGenre) {
         // Calculate the bins
         const bins = hexbin(subset.map(d => [x(d.ratings_count), y(d.average_rating)]));
 
-        const color = d3.scaleSequential(d3.interpolateBuPu)
+        // const colorDict = {
+        //     "All": d3.interpolateBuGn,
+        //     "Fiction": d3.interpolateBuPu,
+        //     "Nonfiction": d3.interpolateGnBu,
+        //     "Classics": d3.interpolateOrRd,
+
+        // };
+
+        const color = d3.scaleSequential(d3.interpolateYlGnBu)
             .domain([0, d3.max(bins, d => d.length)]); 
 
         svg.append("g")
@@ -109,7 +119,7 @@ function renderHexbin(selectedGenre) {
         svg.append('text') //x-axis
             .attr('class', 'title') //Optional: change font size and font weight
             .attr('y', height - 600) //add to the bottom of graph (-15 to add it above axis)
-            .attr('x', width/2) //add to the end of X-axis (offsets the width of text)  
+            .attr('x', width/2 - 50) //add to the end of X-axis (offsets the width of text)  
             .text('Popularity vs Quality')
             .style('font-size', '25px');
 

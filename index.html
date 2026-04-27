@@ -33,13 +33,36 @@
             <div class="container flexbox">
                 <svg id="hexbin" width="1100" height="700"></svg>
                 <div>
-                    <button onclick="renderHexbin('All')">All</button>
-                    <br />
-                    <br />
-                    <button onclick="renderHexbin('Fiction')">Fiction</button>
-                    <br />
-                    <br />
-                    <button onclick="renderHexbin('Nonfiction')">Nonfiction</button>
+                    <div class="flexbox clearPanel">
+                    <div class="innerFlex">
+                        <button type="button" class="btn btn-primary btn-sm genreBtn" onclick="renderHexbin('All')">All</button>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary btn-sm genreBtn" onclick="renderHexbin('Fiction')">Fiction</button>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary btn-sm genreBtn" onclick="renderHexbin('Nonfiction')">Nonfiction</button>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary btn-sm genreBtn" onclick="renderHexbin('Classics')">Classics</button>
+                    </div>
+                    <div class="innerFlex">
+                        <button type="button" class="btn btn-primary btn-sm genreBtn" onclick="renderHexbin('Fantasy')">Fantasy</button>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary btn-sm genreBtn" onclick="renderHexbin('Mystery')">Mystery</button>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary btn-sm genreBtn" onclick="renderHexbin('Philosophy')">Philosophy</button>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary btn-sm genreBtn" onclick="renderHexbin('Science Fiction')">Science Fiction</button>
+                    </div>
+                    <!-- fantasy, mystery, history, philosophy, science fiction, romance -->
+                </div>
+                <div class="flexbox clearPanel">
+                    Hi
+                </div>
                 </div>
             </div>
             
