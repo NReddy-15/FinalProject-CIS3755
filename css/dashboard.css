@@ -5,12 +5,28 @@
 #country_comparison {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+#country_comparison #countryOneName, #countryTwoName {
+    text-align: center;
+    padding: 0rem 0rem 2rem 0rem;
+}
+
+#country_comparison #countryOne, #countryTwo {
+    padding: 3rem;
 }
 
 #countryOne {
-    background-color: red;
+    background-color: rgb(231, 116, 116);
+}
+#countryTwo {
+    background-color: rgb(70, 73, 201);
 }
 
-#countryTwo {
-    background-color: rgb(98, 0, 255);
+#genderChartOne, #genderChartTwo, #ageChartOne, #ageChartTwo{
+    margin: 5rem 0rem 5rem 0rem;
 }
+
+
+

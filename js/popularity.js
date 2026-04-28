@@ -2,7 +2,7 @@ function renderHexbin(selectedGenre) {
 
     d3.select("#hexbin").selectAll("*").remove();
 
-    console.log("THIS IS THE GENRE: " + selectedGenre);
+    // console.log("THIS IS THE GENRE: " + selectedGenre);
 
     const margin = {top: 60, right: 30, bottom: 50, left: 60},
       width = 1100 - margin.left - margin.right,
@@ -23,14 +23,14 @@ function renderHexbin(selectedGenre) {
         .attr("height", height);
 
     d3.csv("data/books_cleaned_genresV2.csv").then((data)=>{
-        console.log(data);
+        // // console.log(data);
     
         const filteredData = data.filter(d => {
             if (!d.overarching_genre || d.overarching_genre.trim() === "") return false;
             return true;
         });
 
-        console.log("Rows after filtering:", filteredData.length);
+        // console.log("Rows after filtering:", filteredData.length);
 
         const mappedData = filteredData.map(d => ({
             title: d.Title,
@@ -40,7 +40,7 @@ function renderHexbin(selectedGenre) {
             ratings_count: d.ratings_count
         }));
 
-        console.log(mappedData);
+        // console.log(mappedData);
 
         const splitGenres = mappedData.flatMap(d => d.genre);
 
@@ -57,17 +57,17 @@ function renderHexbin(selectedGenre) {
 
         genreArray.sort((a, b) => b.count - a.count); 
 
-        console.log("Genre Table:")
-        console.table(genreArray)
+        // console.log("Genre Table:")
+        // console.table(genreArray)
 
         let subset = mappedData;
 
         if(selectedGenre != "All") {
             subset = mappedData.filter(d => d.genre === selectedGenre);
-            console.log(selectedGenre);
-            console.log("SUBSETTTT");
+            // console.log(selectedGenre);
+            // console.log("SUBSETTTT");
 
-            console.log(subset);
+            // console.log(subset);
         }
 
         const x = d3.scaleLog()

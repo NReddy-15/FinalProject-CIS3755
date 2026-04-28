@@ -20,36 +20,11 @@ const width = 400;
 const height = 400;
 const radius = Math.min(width, height) / 2;
 
-// Get the SVG for Country One
-let genderSVGOne = d3.select("#genderChartOne")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
-    .attr("transform", `translate(${width / 2}, ${height / 2})`);
-
-// Get the SVG for Country Two
-let ageSVGOne = d3.select("#ageChartOne")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
-    .attr("transform", `translate(${width / 2}, ${height / 2})`);
-
-let genderSVGTwo = d3.select("#genderChartTwo")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
-    .attr("transform", `translate(${width / 2}, ${height / 2})`);
-
-// Get the SVG for Country Two
-let ageSVGTwo = d3.select("#ageChartTwo")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
-    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+// Generate the SVG for each pie chart!
+let genderSVGOne = GenerateSVG("#genderChartOne", width, height);
+let genderSVGTwo = GenerateSVG("#genderChartTwo", width, height);
+let ageSVGOne = GenerateSVG("#ageChartOne", width, height);
+let ageSVGTwo = GenerateSVG("#ageChartTwo", width, height);
 
 // Set up a color scale
 const color = d3.scaleOrdinal(d3.schemeObservable10);
@@ -62,8 +37,6 @@ const pie = d3.pie().value(d => d.count);
 console.log("==============Filtered by Genre and Country ================");
 var readerGenderOne = FilterByGenre(readerGenderData, "Fantasy", "United States");
 var readerGenderTwo = FilterByGenre(readerGenderData, "Fantasy", "Germany");
-
-
 var readerAgeOne = FilterByGenre(readerAgesData, "Fantasy", "usa");
 var readerAgeTwo = FilterByGenre(readerAgesData, "Fantasy", "Germany");
 
@@ -71,10 +44,10 @@ var readerAgeTwo = FilterByGenre(readerAgesData, "Fantasy", "Germany");
 // Create the data for the pie chart
 var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
 var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
-
 var ageArrayOne = CreatePieArrayByAge(readerAgeOne);
 var ageArrayTwo = CreatePieArrayByAge(readerAgeTwo);
 
+// Generate the arc genometry data
 const arcsGenderOne = pie(genderArrayOne);
 const arcsGenderTwo = pie(genderArrayTwo);
 const arcsAgeOne = pie(ageArrayOne);
@@ -85,42 +58,13 @@ const arcGenerator = d3.arc()
     .innerRadius(0)
     .outerRadius(radius);
 
+// Generate the Pie Charts
+// Pass in the SVG, the datasets, and the filter for the color: gender or age
+GeneratePieChart(genderSVGOne, arcsGenderOne, "gender");
+GeneratePieChart(genderSVGTwo, arcsGenderTwo, "gender");
+GeneratePieChart(ageSVGOne, arcsAgeOne, "age");
+GeneratePieChart(ageSVGTwo, arcsAgeTwo, "age");
 
-GeneratePieChart(genderSVGOne, arcsGenderOne, d.data.gender);
-// genderSVGOne.selectAll("path")
-//     .data(arcsGenderOne)  
-//     .join("path")
-//     .attr("d", arcGenerator) 
-//     .attr("fill", function (d) { return color(d.data.gender) })
-//     .attr("stroke", "white")
-//     .attr("stroke-width", 1);
-
-genderSVGTwo.selectAll("path")
-    .data(arcsGenderTwo)  
-    .join("path")
-    .attr("d", arcGenerator) 
-    .attr("fill", function (d) { return color(d.data.gender) })
-    .attr("stroke", "white")
-    .attr("stroke-width", 1);
-
-
-ageSVGOne.selectAll("path")
-    .data(arcsAgeOne)  
-    .join("path")
-    .attr("d", arcGenerator) 
-    .attr("fill", function (d) { return color(d.data.age) })
-    .attr("stroke", "white")
-    .attr("stroke-width", 1);
-
-ageSVGTwo.selectAll("path")
-    .data(arcsAgeTwo)  
-    .join("path")
-    .attr("d", arcGenerator) 
-    .attr("fill", function (d) { return color(d.data.age) })
-    .attr("stroke", "white")
-    .attr("stroke-width", 1);
-
-// console.log(arcs[0]);
 
 // ========= Helper Functions ===========
 function FilterByGenre(dataset, genre, country) 
@@ -213,16 +157,31 @@ function CreatePieArrayByAge(dataset)
     return ageArray;
 }
 
+
+
+// Basic Generators 
 function GeneratePieChart(svg, arcData, colorFilter) {
     console.log("======= I am generating a pie chart=======");
     svg.selectAll("path")
         .data(arcData)  
         .join("path")
         .attr("d", arcGenerator) 
-        .attr("fill", function (d) { return color(colorFilter) })
+        .attr("fill", function (d) { return colorFilter == "gender" ?  color(d.data.gender) : color(d.data.age) })
         .attr("stroke", "white")
         .attr("stroke-width", 1);
     
     return svg;
 }
 
+
+function GenerateSVG(idName, width, height) {
+    console.log("=======I am generating my SVG, a canvas=========");
+    let svg = d3.select(idName)
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+    return svg;
+}
