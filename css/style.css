@@ -1,0 +1,19 @@
+.flexbox {
+    display:flex;
+    flex-direction: row;
+}
+
+.innerFlex {
+    margin: 1rem;
+}
+
+.genreBtn {
+    width: 7rem;
+    height: 3rem;
+}
+
+.clearPanel {
+    background-color: #53bcc17d;
+    margin: 2rem;
+    border-radius: 15px;
+}
