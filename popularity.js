@@ -22,11 +22,11 @@ function renderHexbin(selectedGenre) {
         .attr("width", width)
         .attr("height", height);
 
-    d3.csv("data/books_with_genres.csv").then((data)=>{
+    d3.csv("data/books_cleaned_genres.csv").then((data)=>{
         console.log(data);
     
         const filteredData = data.filter(d => {
-            if (!d.genres || d.genres.trim() === "") return false;
+            if (!d.overarching_genre || d.overarching_genre.trim() === "") return false;
             return true;
         });
 
@@ -35,7 +35,7 @@ function renderHexbin(selectedGenre) {
         const mappedData = filteredData.map(d => ({
             title: d.Title,
             author: d.Author,
-            genre: d.genres.split(";")[0],
+            genre: d.overarching_genre,
             average_rating: d.average_rating,
             ratings_count: d.ratings_count
         }));
@@ -86,14 +86,6 @@ function renderHexbin(selectedGenre) {
         // Calculate the bins
         const bins = hexbin(subset.map(d => [x(d.ratings_count), y(d.average_rating)]));
 
-        // const colorDict = {
-        //     "All": d3.interpolateBuGn,
-        //     "Fiction": d3.interpolateBuPu,
-        //     "Nonfiction": d3.interpolateGnBu,
-        //     "Classics": d3.interpolateOrRd,
-
-        // };
-
         const color = d3.scaleSequential(d3.interpolateYlGnBu)
             .domain([0, d3.max(bins, d => d.length)]); 
 
@@ -116,24 +108,24 @@ function renderHexbin(selectedGenre) {
         svg.append("g")
             .call(d3.axisLeft(y));
 
-        svg.append('text') //x-axis
-            .attr('class', 'title') //Optional: change font size and font weight
-            .attr('y', height - 600) //add to the bottom of graph (-15 to add it above axis)
-            .attr('x', width/2 - 50) //add to the end of X-axis (offsets the width of text)  
+        svg.append('text')
+            .attr('class', 'title')
+            .attr('y', height - 600)
+            .attr('x', width/2 - 50)
             .text('Popularity vs Quality')
             .style('font-size', '25px');
 
         svg.append('text') //x-axis
-            .attr('class', 'axis-title') //Optional: change font size and font weight
-            .attr('y', height + 35) //add to the bottom of graph (-15 to add it above axis)
-            .attr('x', width/2) //add to the end of X-axis (offsets the width of text)  
+            .attr('class', 'axis-title')
+            .attr('y', height + 35)
+            .attr('x', width/2)
             .text('Ratings Count');
 
         svg.append('text') //y-axis
-            .attr('class', 'axis-title') //Optional: change font size and font weight
-            .attr('x', 10) //add some x padding to clear the y axis
-            .attr('y', 25) //add some y padding to align the end of the axis with the text
-            .text('Average Rating'); //actual text to display
+            .attr('class', 'axis-title')
+            .attr('x', 10)
+            .attr('y', 25)
+            .text('Average Rating');
 
     })
 }
