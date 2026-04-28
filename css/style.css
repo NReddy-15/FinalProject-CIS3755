@@ -8,13 +8,12 @@
 }
 
 .genreBtn {
-    width: 6rem;
+    width: 7rem;
     height: 3rem;
 }
 
 .clearPanel {
     background-color: #53bcc17d;
     margin: 2rem;
-    height: 45%;
     border-radius: 15px;
 }
