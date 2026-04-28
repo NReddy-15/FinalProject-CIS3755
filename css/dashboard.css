@@ -1,0 +1,16 @@
+/* .dashboard_viz {
+
+} */
+
+#country_comparison {
+    display: flex;
+    flex-direction: row;
+}
+
+#countryOne {
+    background-color: red;
+}
+
+#countryTwo {
+    background-color: rgb(98, 0, 255);
+}
