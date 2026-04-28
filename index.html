@@ -9,8 +9,10 @@
 
     <!-- import D3 Version 6 here or at the end of the body -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
+    <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/fullpage.css" />
     <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
@@ -30,10 +32,82 @@
             </div>
         </div>
         <div class="section">
+            <div class="container flexbox">
+                <svg id="hexbin" width="1100" height="700"></svg>
+                <div>
+                    <div class="flexbox clearPanel">
+                        <div class="innerFlex">
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('All')">All</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Non-Fiction')">Non-Fiction</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Art/Literature')">Art/Literature</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Fantasy')">Fantasy</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Mystery/Thriller')">Mystery/Thriller</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Romance')">Romance</button>
+                        </div>
+                        <div class="innerFlex">
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Science Fiction')">Science Fiction</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Children')">Children</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Horror')">Horror</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Humor')">Humor</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Adventure')">Adventure</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Graphic Novels/Manga')">Graphic Novels/Manga</button>
+                            <br />
+                            <br />
+                            <button type="button" class="btn btn-primary btn-sm genreBtn"
+                                onclick="renderHexbin('Other')">Other</button>
+
+                        </div>
+                        <!-- fantasy, mystery, history, philosophy, science fiction, romance -->
+                    </div>
+                    <div class="flexbox clearPanel">
+                        Hi
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="section">
+            <div class="container">
+                Books 4
+            </div>
+        </div>
+
+        <div class="" section>
             <div class="container dashboard_viz">
-               <h1> Countries Comparison </h1>
-               <p> How do these countries compare to each other?</p>
-                
+                <h1> Countries Comparison </h1>
+                <p> How do these countries compare to each other?</p>
                 <div id="country_comparison">
                     <div id="countryOne">
                         United States
@@ -46,12 +120,6 @@
                         <div id="ageChartTwo"></div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                Books 4
             </div>
         </div>
     </div>
@@ -60,7 +128,7 @@
     <!-- <script src="./js/scrolly.js"></script> -->
     <!-- <script src="./js/map.js"></script> -->
     <script type="module" src="./js/dashboard.js"></script>
-    <!-- <script src="./js/timeline.js"></script> -->
+    <!-- <script src="./js/popularity.js"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -77,6 +145,8 @@
             autoScrolling: true,
             scrollHorizontally: true
         });
+
+        renderHexbin("All");
     </script>
 
 </body>

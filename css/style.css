@@ -1,41 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,600');
-
-body{
-    height: 100%;
-    padding: 50px;
-    scroll-behavior: smooth;
-    color: #666;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
- }
-
-.fixed {
-    position: fixed;
-    max-width: 600px;
-    height: 500px;
-    top: 75px;
-    float: right;
+.flexbox {
+    display:flex;
+    flex-direction: row;
 }
 
-#container {
-  height: 100%;
-  max-width: 600px;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  line-height: 1.5;
-  margin-left: 500px;
+.innerFlex {
+    margin: 1rem;
 }
 
-#container > div {
-    height: 1200px;
-    display: block;
-    padding: 0 45px;
-  }
+.genreBtn {
+    width: 7rem;
+    height: 3rem;
+}
 
-
-.tick > line {
-    color: rgb(194, 194, 194);
-    opacity: 0.5;
+.clearPanel {
+    background-color: #53bcc17d;
+    margin: 2rem;
+    border-radius: 15px;
 }
