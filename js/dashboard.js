@@ -5,8 +5,8 @@ var readerGenderData = await d3.csv("../datasets/dashboard/Combined_GlobalReader
 
 // Check if the data loads properly + filepath is correct
 console.log("=========Log All Datasets==========");
-console.log(readerAgesData);
-console.log(readerGenderData);
+// console.log(readerAgesData);
+// console.log(readerGenderData);
 //console.table(dataset);
 
 
@@ -60,65 +60,65 @@ const pie = d3.pie().value(d => d.count);
 // Get just a list of genders split by female and male
 // Hardcode the genre to be Romance
 console.log("==============Filtered by Genre and Country ================");
-// var readerGenderOne = FilterByGenre(readerGenderData, "Fantasy", "United States");
-// var readerGenderTwo = FilterByGenre(readerGenderData, "Fantasy", "Germany");
+var readerGenderOne = FilterByGenre(readerGenderData, "Fantasy", "United States");
+var readerGenderTwo = FilterByGenre(readerGenderData, "Fantasy", "Germany");
 
 
-// var readerAgeOne = FilterByGenre(readerAgesData, "Fantasy", "usa");
+var readerAgeOne = FilterByGenre(readerAgesData, "Fantasy", "usa");
 var readerAgeTwo = FilterByGenre(readerAgesData, "Fantasy", "Germany");
 
 
 // Create the data for the pie chart
-// var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
-// var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
+var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
+var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
 
 var ageArrayOne = CreatePieArrayByAge(readerAgeOne);
 var ageArrayTwo = CreatePieArrayByAge(readerAgeTwo);
 
-
-// const arcsGenderOne = pie(genderArrayOne);
-// const arcsGenderTwo = pie(genderArrayTwo);
-// const arcsAgeOne = pie(ageArrayOne);
-// const arcsAgeTwo = pie(ageArrayTwo);
+const arcsGenderOne = pie(genderArrayOne);
+const arcsGenderTwo = pie(genderArrayTwo);
+const arcsAgeOne = pie(ageArrayOne);
+const arcsAgeTwo = pie(ageArrayTwo);
 
 // // Generate the pie pieces
-// const arcGenerator = d3.arc()
-// .innerRadius(0)
-// .outerRadius(radius);
+const arcGenerator = d3.arc()
+    .innerRadius(0)
+    .outerRadius(radius);
 
 
+GeneratePieChart(genderSVGOne, arcsGenderOne, d.data.gender);
 // genderSVGOne.selectAll("path")
-// .data(arcsGenderOne)  
-// .join("path")
-// .attr("d", arcGenerator) 
-// .attr("fill", function (d) { return color(d.data.gender) })
-// .attr("stroke", "white")
-// .attr("stroke-width", 1);
+//     .data(arcsGenderOne)  
+//     .join("path")
+//     .attr("d", arcGenerator) 
+//     .attr("fill", function (d) { return color(d.data.gender) })
+//     .attr("stroke", "white")
+//     .attr("stroke-width", 1);
 
-// genderSVGTwo.selectAll("path")
-// .data(arcsGenderTwo)  
-// .join("path")
-// .attr("d", arcGenerator) 
-// .attr("fill", function (d) { return color(d.data.gender) })
-// .attr("stroke", "white")
-// .attr("stroke-width", 1);
+genderSVGTwo.selectAll("path")
+    .data(arcsGenderTwo)  
+    .join("path")
+    .attr("d", arcGenerator) 
+    .attr("fill", function (d) { return color(d.data.gender) })
+    .attr("stroke", "white")
+    .attr("stroke-width", 1);
 
 
-// ageSVGOne.selectAll("path")
-// .data(arcsAgeOne)  
-// .join("path")
-// .attr("d", arcGenerator) 
-// .attr("fill", function (d) { return color(d.data.age) })
-// .attr("stroke", "white")
-// .attr("stroke-width", 1);
+ageSVGOne.selectAll("path")
+    .data(arcsAgeOne)  
+    .join("path")
+    .attr("d", arcGenerator) 
+    .attr("fill", function (d) { return color(d.data.age) })
+    .attr("stroke", "white")
+    .attr("stroke-width", 1);
 
-// ageSVGTwo.selectAll("path")
-// .data(arcsAgeTwo)  
-// .join("path")
-// .attr("d", arcGenerator) 
-// .attr("fill", function (d) { return color(d.data.age) })
-// .attr("stroke", "white")
-// .attr("stroke-width", 1);
+ageSVGTwo.selectAll("path")
+    .data(arcsAgeTwo)  
+    .join("path")
+    .attr("d", arcGenerator) 
+    .attr("fill", function (d) { return color(d.data.age) })
+    .attr("stroke", "white")
+    .attr("stroke-width", 1);
 
 // console.log(arcs[0]);
 
@@ -145,12 +145,12 @@ function FilterByGenre(dataset, genre, country)
             const userID = `${d.User_ID}`;
             const newUser = !dupUsers.has(userID);
             
-            if(genreMatch) {
-                // console.log(d);
-                console.log(`Given Country ${d.Country.trim()}, Country to match ${country}`)
-                console.log(`Genre ${genreMatch}, Country: ${countryMatch}, ${genreMatch}`)
+            // if(genreMatch) {
+            //     // console.log(d);
+            //     console.log(`Given Country ${d.Country.trim()}, Country to match ${country}`)
+            //     console.log(`Genre ${genreMatch}, Country: ${countryMatch}, ${genreMatch}`)
 
-            }
+            // }
 
             // console.log(`${genreMatch}, ${newUser}, ${countryMatch}`);
             if(genreMatch && newUser && countryMatch) {
@@ -162,7 +162,7 @@ function FilterByGenre(dataset, genre, country)
     );
 
     // Check the filter sets to ensure it is good to go
-    console.log(filteredSet);
+    // console.log(filteredSet);
     return filteredSet;
 }
 
@@ -185,7 +185,7 @@ function CreatePieArrayByGender(dataset)
         ([gender, count]) => ({ gender, count })
     );
 
-    console.table(genderArray);
+    // console.table(genderArray);
     return genderArray;
 }
 
@@ -196,7 +196,7 @@ function CreatePieArrayByAge(dataset)
 {
 
     console.log("=====CREATE PIECHART BY AGE======");
-    console.log(dataset);
+    // console.log(dataset);
     const counts = d3.rollup(
         dataset,
         group => group.length,
@@ -209,9 +209,20 @@ function CreatePieArrayByAge(dataset)
         ([age, count]) => ({ age, count })
     );
     
-    console.table(ageArray);
+    // console.table(ageArray);
     return ageArray;
 }
 
-
+function GeneratePieChart(svg, arcData, colorFilter) {
+    console.log("======= I am generating a pie chart=======");
+    svg.selectAll("path")
+        .data(arcData)  
+        .join("path")
+        .attr("d", arcGenerator) 
+        .attr("fill", function (d) { return color(colorFilter) })
+        .attr("stroke", "white")
+        .attr("stroke-width", 1);
+    
+    return svg;
+}
 
