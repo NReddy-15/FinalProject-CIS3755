@@ -1,16 +1,12 @@
-function GetGenre(genre){
-    // Convert the map genres to 
-
-
-
-
-    // console.log(`=======GetGenre retrieved: ${genre}========`);
+function GetGenre(genre, minRankCountry, maxRankCountry){
+    console.log(`=======GetGenre retrieved: ${genre}========`);
+    console.log(`High Ranking in ${maxRankCountry}\nLow Ranking in ${minRankCountry}`)
     renderHexbin(genre);
 
     // Victoria : Add my function that will showcase
     // the country that deems the selected genre as 
     // high ranking or low ranking from their users
-    GenerateDashboard(genre, "United States", "Germany");
+    GenerateDashboard(genre, maxRankCountry[0], minRankCountry[0]);
 
     // Display the genre the user selected
     var genreDisplay = document.getElementById("displayGenre");

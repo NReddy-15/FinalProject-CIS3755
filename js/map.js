@@ -50,7 +50,7 @@
         "Ukraine": 804, "United Arab Emirates": 784, "United Kingdom": 826,
         "UK": 826, "USA": 840, "United States": 840,
         "Uruguay": 858, "Uzbekistan": 860, "Venezuela": 862, "Vietnam": 704,
-        "Yemen": 887, "Zambia": 894, "Zimbabwe": 716, "Turkmenistan" : 795 
+        "Yemen": 887, "Zambia": 894, "Zimbabwe": 716, "Turkmenistan": 795
     };
 
     const svg = d3.select("#mapgraph")
@@ -129,6 +129,32 @@
                             .filter(d => d.genre === genre)
                             .map(d => d.most_popular_country.trim());
 
+
+                        // get the ranking between popular countries
+                        const matchedCountriesRanking = {}
+
+                        matchedCountries.forEach(country => {
+                            if (matchedCountriesRanking[country]) {
+                                matchedCountriesRanking[country] += 1;
+                            } else if (!matchedCountriesRanking[country]) {
+                                matchedCountriesRanking[country] = 1;
+                            }
+                        })
+                        console.log(matchedCountriesRanking)
+
+
+                        // Convert to a list of pairs for easier access
+                        var matchedCountriesPairs = Object.entries(matchedCountriesRanking);
+
+                        // use reduce to loop through the entries and replace the maxPair/min pair value 
+                        // Basically a short cut of a for-loop
+                        // Check if the current pair great than the previoys pair
+                        var maxPair = matchedCountriesPairs.reduce((prev, curr) => curr[1] > prev[1] ? curr : prev)
+                        // check the current pair is less than the previous pair
+                        var minPair = matchedCountriesPairs.reduce((prev, curr) => curr[1] < prev[1] ? curr : prev)
+
+
+
                         // Convert country names to numeric IDs
                         const matchedIDs = new Set(
                             matchedCountries
@@ -139,6 +165,10 @@
                         d3.selectAll(".country")
                             .classed("country--highlighted", d => matchedIDs.has(+d.id))
                             .classed("country--dimmed", d => !matchedIDs.has(+d.id));
+
+
+                        // Call the GetGenre Function here as well
+                        GetGenre(genre, minPair, maxPair);
                     }
                 })
         })
