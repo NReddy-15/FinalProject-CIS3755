@@ -22,6 +22,7 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     // Generate the SVG for each pie chart!
     let genderSVGOne = GenerateSVG("#genderChartOne", width, height);
     let ageSVGOne = GenerateSVG("#ageChartOne", width, height);
+    // SVG for the barcharts are generated in their own function
 
     // Set up a color scale, using the popularity color theme
     let colorScale = ["#EBF5C6", "#9ED9B0", "#4CB1C2", "#2B6BA5", "#081D58"]
@@ -36,8 +37,10 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     // console.log("==============Filtered by Genre and Country ================");
     var readerGenderOne = FilterByGenre(readerGenderData, genre);
     var readerAgeOne = FilterByGenre(readerAgesData, genre);
-    var recordsByCountry = GetRecordsByCountry(readerGenderOne);
-    console.log(recordsByCountry)
+    var readerGenderByCountry = GetRecordsByCountry(readerGenderOne);
+    var readerAgeByCountry = GetRecordsByCountry(readerAgeOne);
+
+    // console.log(recordsByCountry)
 
     // console.log("=====Get the datasets filtered by genre and the country=====");
     // console.log(readerGenderOne);
@@ -63,7 +66,9 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     // Pass in the SVG, the datasets, and the filter for the color: gender or age
     GeneratePieChart(genderSVGOne, arcsGenderOne, "gender", arcGenerator, color);
     GeneratePieChart(ageSVGOne, arcsAgeOne, "age", arcGenerator, color);
-    GenerateBarChart(recordsByCountry, width * 2, height * 2, color);
+    GenerateBarChart(readerGenderByCountry, "#genderChartTwo", width + 100, height + 100, color);
+    GenerateBarChart(readerAgeByCountry, "#ageChartTwo", width + 100, height + 100, color);
+
 }
 
 
@@ -234,9 +239,9 @@ function GeneratePieChart(svg, arcData, colorFilter, arcGenerator, colorScale)
 }
 
 
-function GenerateBarChart(dataset, width, height, color) {
+function GenerateBarChart(dataset, idName, width, height, color) {
     // Clear any existing bar chart before re-rendering
-    d3.select("#countryBarChart").selectAll("*").remove();
+    d3.select(idName).selectAll("*").remove();
 
     // set up the margins
     const margin = { top: 20, right: 90, bottom: 40, left: 180 };
@@ -248,7 +253,8 @@ function GenerateBarChart(dataset, width, height, color) {
     // of the sortedData first
     const sortedData = dataset.sort((a, b) => b.count - a.count);
 
-    const svg = d3.select("#countryBarChart")
+    // Generate the svg. Will see if i can make it a separate function like the piecharts, but not really needed for now
+    const svg = d3.select(idName)
         .append("svg")
         .attr("width", width)
         .attr("height", height)

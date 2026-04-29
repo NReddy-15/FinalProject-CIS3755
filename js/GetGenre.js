@@ -3,9 +3,9 @@ function GetGenre(genre, minRankCountry, maxRankCountry){
     console.log(`High Ranking in ${maxRankCountry}\nLow Ranking in ${minRankCountry}`)
 
     // VIVI - Hardcode the data
-    genre = "Mystery/Thriller"
-    minRankCountry = ['Spain', 0]
-    maxRankCountry = ["United States", 33]
+    // genre = "Mystery/Thriller"
+    // minRankCountry = ['Spain', 0]
+    // maxRankCountry = ["United States", 33]
 
 
     // Generate the popularity visual
