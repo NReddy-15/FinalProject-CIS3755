@@ -45,15 +45,15 @@
 }
 
 #mapgraph .country {
-    fill: #2a3f5f !important;
-    stroke: #0d1117 !important;
+    fill: #B0E0B6 !important;
+    stroke: #081D58 !important;
     stroke-width: 0.5 !important;
     transition: fill 0.2s ease;
     cursor: pointer;
 }
 
 #mapgraph .country:hover {
-    fill: #4a7fa5 !important;
+    fill: #F6FBC6 !important;
 }
 
 #geomap-tooltip {
@@ -66,7 +66,7 @@
     letter-spacing: 0.05em;
     pointer-events: none;
     opacity: 0;
-    border: 1px solid #2a3f5f;
+    border: 1px solid #B0E0B6;
     transition: opacity 0.15s ease;
     z-index: 999;
 }
@@ -83,7 +83,7 @@
 
 .genre-btn {
   padding: 0.4rem 1rem;
-  border: 1px solid #2a3f5f;
+  border: 1px solid #B0E0B6;
   border-radius: 20px;
   background: transparent;
   color: #e0d6c8;
@@ -94,17 +94,17 @@
 
 .genre-btn:hover {
   background: #1e2d3d;
-  border-color: #4a7fa5;
+  border-color: #F6FBC6;
 }
 
 .genre-btn--active {
-  background: #4a7fa5 !important;
-  border-color: #4a7fa5 !important;
+  background: #F6FBC6 !important;
+  border-color: #F6FBC6 !important;
   color: #fff !important;
 }
 
 #mapgraph .country--highlighted {
-  fill: #f4a124 !important;
+  fill: #F6FBC6 !important;
 }
 
 #mapgraph .country--dimmed {
@@ -114,5 +114,5 @@
 
 /* Restore hover only on highlighted countries */
 #mapgraph .country--highlighted:hover {
-  fill: #f7c060 !important;
+  fill: #C1E7B5 !important;
 }
