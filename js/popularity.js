@@ -22,7 +22,7 @@ function renderHexbin(selectedGenre) {
         .attr("width", width)
         .attr("height", height);
 
-    d3.csv("./datasets/popularity/books_cleaned_genresV3.csv").then((data)=>{
+    d3.csv("./datasets/popularity/books_cleaned_genresV4.csv").then((data)=>{
         // // console.log(data);
     
         const filteredData = data.filter(d => {
