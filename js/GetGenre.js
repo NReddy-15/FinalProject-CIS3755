@@ -7,9 +7,12 @@ function GetGenre(genre){
     // the country that deems the selected genre as 
     // high ranking or low ranking from their users
 
+    // Display the genre the user selected
+    var genreDisplay = document.getElementById("displayGenre");
     var countryOne = document.getElementById("countryOneName");
     var countryTwo = document.getElementById("countryTwoName");
 
+    genreDisplay.innerHTML = `Here are the readers based on the genre ${genre}`;
     countryOne.innerHTML = `TESTING ONE: ${genre}`;
     countryTwo.innerHTML = `TESTING TWO: ${genre}`;
 }
