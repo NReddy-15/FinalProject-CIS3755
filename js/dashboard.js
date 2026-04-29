@@ -4,7 +4,7 @@ var readerAgesData = await d3.csv("../datasets/dashboard/Combined_BookRec_GenreT
 var readerGenderData = await d3.csv("../datasets/dashboard/Combined_GlobalReader_GenreToGender.csv");
 
 // Check if the data loads properly + filepath is correct
-console.log("=========Log All Datasets==========");
+// console.log("=========Log All Datasets==========");
 // console.log(readerAgesData);
 // console.log(readerGenderData);
 //console.table(dataset);
@@ -34,7 +34,7 @@ const pie = d3.pie().value(d => d.count);
 
 // Get just a list of genders split by female and male
 // Hardcode the genre to be Romance
-console.log("==============Filtered by Genre and Country ================");
+// console.log("==============Filtered by Genre and Country ================");
 var readerGenderOne = FilterByGenre(readerGenderData, "Fantasy", "United States");
 var readerGenderTwo = FilterByGenre(readerGenderData, "Fantasy", "Germany");
 var readerAgeOne = FilterByGenre(readerAgesData, "Fantasy", "usa");
@@ -139,7 +139,7 @@ function CreatePieArrayByAge(dataset)
 */
 {
 
-    console.log("=====CREATE PIECHART BY AGE======");
+    // console.log("=====CREATE PIECHART BY AGE======");
     // console.log(dataset);
     const counts = d3.rollup(
         dataset,
@@ -161,7 +161,7 @@ function CreatePieArrayByAge(dataset)
 
 // Basic Generators 
 function GeneratePieChart(svg, arcData, colorFilter) {
-    console.log("======= I am generating a pie chart=======");
+    // console.log("======= I am generating a pie chart=======");
     svg.selectAll("path")
         .data(arcData)  
         .join("path")
@@ -175,7 +175,7 @@ function GeneratePieChart(svg, arcData, colorFilter) {
 
 
 function GenerateSVG(idName, width, height) {
-    console.log("=======I am generating my SVG, a canvas=========");
+    // console.log("=======I am generating my SVG, a canvas=========");
     let svg = d3.select(idName)
         .append("svg")
         .attr("width", width)

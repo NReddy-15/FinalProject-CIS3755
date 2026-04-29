@@ -1,6 +1,6 @@
 
 function GetGenre(genre){
-    console.log(`=======GetGenre retrieved: ${genre}========`);
+    // console.log(`=======GetGenre retrieved: ${genre}========`);
     renderHexbin(genre);
 
     // Victoria : Add my function that will showcase
@@ -15,6 +15,8 @@ function GetGenre(genre){
     genreDisplay.innerHTML = `Here are the readers based on the genre ${genre}`;
     countryOne.innerHTML = `TESTING ONE: ${genre}`;
     countryTwo.innerHTML = `TESTING TWO: ${genre}`;
+
+    console.log(genreCountries);
 }
 
 // Make the function global it can be called

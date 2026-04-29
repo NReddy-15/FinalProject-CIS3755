@@ -1,3 +1,5 @@
+let genreCountries = [];
+
 (function () {
     const width = 960;
     const height = 500;
@@ -129,6 +131,10 @@
                             .filter(d => d.genre === genre)
                             .map(d => d.most_popular_country.trim());
 
+                        // Additional store the list of country names to a global variable for
+                        // other functions
+                        genreCountries = matchedCountries;
+                        
                         // Convert country names to numeric IDs
                         const matchedIDs = new Set(
                             matchedCountries
@@ -140,6 +146,7 @@
                             .classed("country--highlighted", d => matchedIDs.has(+d.id))
                             .classed("country--dimmed", d => !matchedIDs.has(+d.id));
                     }
+                
                 })
         })
 
