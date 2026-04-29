@@ -26,7 +26,7 @@
     <div id="fullpage">
         <div class="section active">
             <h1>Genres Around the World</h1>
-            <h3>Click on a genre to see which country has it popular</h3>
+            <h3>Click on a genre to see which country it's popular in</h3>
             <div class="mapcontainer">
                 <svg id="mapgraph">
                 </svg>
@@ -39,71 +39,18 @@
             <h3>Is it really popular? Or is it just the hype? Check out whether
                 the book reviews match the readers' reviews
             </h3>
+            <p>Hover over a hexchip to view more data</p>
             <div class="container flexbox">
                 <svg id="hexbin" width="1100" height="700"></svg>
-                <!-- <div>
-                    <div class="flexbox clearPanel">
-                        <div class="innerFlex">
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('All')">All</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Non-Fiction')">Non-Fiction</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Art/Literature')">Art/Literature</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Fantasy')">Fantasy</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Mystery/Thriller')">Mystery/Thriller</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Romance')">Romance</button>
-                        </div>
-                        <div class="innerFlex">
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Science Fiction')">Science Fiction</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Children')">Children</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Horror')">Horror</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Humor')">Humor</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Adventure')">Adventure</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Graphic Novels/Manga')">Graphic Novels/Manga</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Other')">Other</button>
-
-                        </div>
-                        <!-- fantasy, mystery, history, philosophy, science fiction, romance -->
+                <div>
+                    <div id="tooltip" class="clearPanel" style="height:8rem;">
                     </div>
-                    <div id="tooltip" class="clearPanel" style="height:6rem;">
-                    </div>
-                </div> -->
+                </div> 
             </div>
         </div>
 
+
+        <br/>
 
         <div class="section">
             <h1> Countries Comparison </h1>
