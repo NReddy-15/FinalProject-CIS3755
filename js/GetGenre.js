@@ -14,8 +14,8 @@ function GetGenre(genre, minRankCountry, maxRankCountry){
     var countryTwo = document.getElementById("countryTwoName");
 
     genreDisplay.innerHTML = `Here are the readers based on the genre ${genre}`;
-    countryOne.innerHTML = `TESTING ONE: ${genre}`;
-    countryTwo.innerHTML = `TESTING TWO: ${genre}`;
+    countryOne.innerHTML = `Highest Ranking: ${maxRankCountry[0]}`;
+    countryTwo.innerHTML = `Lowest Ranking: ${minRankCountry[0]}`;
 
     // console.log(genreCountries);
 }
