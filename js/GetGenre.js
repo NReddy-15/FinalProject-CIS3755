@@ -1,4 +1,9 @@
 function GetGenre(genre){
+    // Convert the map genres to 
+
+
+
+
     // console.log(`=======GetGenre retrieved: ${genre}========`);
     renderHexbin(genre);
 
