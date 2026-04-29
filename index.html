@@ -24,7 +24,7 @@
 <body>
 
     <div id="fullpage">
-        <div class="section active">
+        <div class="section active active">
             <h1>Genres Around the World</h1>
             <h3>Click on a genre to see which country has it popular</h3>
             <div class="mapcontainer">
@@ -153,7 +153,7 @@
 
     </div>
 
-
+    
     <script src="./js/GetGenre.js"></script>
     <script src="./js/dashboard.js"></script>
     <script src="./js/popularity.js"></script>
@@ -176,6 +176,7 @@
         });
 
         GetGenre("All");
+        GenerateDashboard("Adventure", "United States", "Germany");
     </script>
 
 </body>

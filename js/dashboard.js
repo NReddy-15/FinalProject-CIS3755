@@ -11,13 +11,17 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
 
     // Let's start by making a simply piechart display the reader's gender by genre first
     // Then sort again by specific country
+    // Let's start by making a simply piechart display the reader's gender by genre first
+    // Then sort again by specific country
 
+    // Create the PieChart Visual - Reference Lab 6
     // Create the PieChart Visual - Reference Lab 6
 
     // Start defining some constances
     const width = 400;
     const height = 400;
     const radius = Math.min(width, height) / 2;
+\
 
     // Generate the SVG for each pie chart!
     let genderSVGOne = GenerateSVG("#genderChartOne", width, height);
@@ -31,6 +35,8 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     let color = d3.scaleOrdinal()
         .range(colorScale)
 
+    // Define the pie pieces
+    const pie = d3.pie().value(d => d.count);
     // Define the pie pieces
     const pie = d3.pie().value(d => d.count);
 
@@ -201,6 +207,7 @@ function GeneratePieChart(svg, arcData, colorFilter, arcGenerator, colorScale)
     const total = d3.sum(arcData, a => a.data.count);
 
     svg.selectAll("path")
+        .data(arcData)
         .data(arcData)
         .join("path")
         .attr("d", arcGenerator)
