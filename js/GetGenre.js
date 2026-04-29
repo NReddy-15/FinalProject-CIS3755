@@ -3,7 +3,7 @@ function GetGenre(genre, minRankCountry, maxRankCountry){
     console.log(`High Ranking in ${maxRankCountry}\nLow Ranking in ${minRankCountry}`)
 
     // VIVI - Hardcode the data
-    // genre = "Adventure"
+    // genre = "Fantasy"
     // minRankCountry = ['Spain', 0]
     // maxRankCountry = ["United States", 33]
 
@@ -18,11 +18,11 @@ function GetGenre(genre, minRankCountry, maxRankCountry){
 
     // Display the genre the user selected
     var genreDisplay = document.getElementById("displayGenre");
-    var countryOne = document.getElementById("countryOneName");
+    // var countryOne = document.getElementById("countryOneName");
     var countryTwo = document.getElementById("countryTwoName");
 
     genreDisplay.innerHTML = `Here are the readers based on the genre ${genre}`;
-    countryOne.innerHTML = `Highest Ranking: ${maxRankCountry[0]}`;
+    // countryOne.innerHTML = `Highest Ranking: ${maxRankCountry[0]}`;
     countryTwo.innerHTML = `Lowest Ranking: ${minRankCountry[0]}`;
 
     // console.log(genreCountries);

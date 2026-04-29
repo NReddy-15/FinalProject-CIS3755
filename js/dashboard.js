@@ -38,10 +38,10 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     // Get just a list of genders split by female and male
     // Hardcode the genre to be Romance
     // console.log("==============Filtered by Genre and Country ================");
-    var readerGenderOne = FilterByGenre(readerGenderData, genre, countryOne);
-    var readerAgeOne = FilterByGenre(readerAgesData, genre, countryOne);
-    var readerGenderTwo = FilterByGenre(readerGenderData, genre, countryTwo);
-    var readerAgeTwo = FilterByGenre(readerAgesData, genre, countryTwo);
+    var readerGenderOne = FilterByGenre(readerGenderData, genre);
+    var readerAgeOne = FilterByGenre(readerAgesData, genre);
+    // var readerGenderTwo = FilterByGenreCountry(readerGenderData, genre, countryTwo);
+    // var readerAgeTwo = FilterByGenreCountry(readerAgesData, genre, countryTwo);
 
     // console.log("=====Get the datasets filtered by genre and the country=====");
     // console.log(readerGenderOne);
@@ -51,15 +51,15 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
 
     // Create the data for the pie chart
     var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
-    var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
     var ageArrayOne = CreatePieArrayByAge(readerAgeOne);
-    var ageArrayTwo = CreatePieArrayByAge(readerAgeTwo);
+    // var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
+    // var ageArrayTwo = CreatePieArrayByAge(readerAgeTwo);
 
     // Generate the arc genometry data
     const arcsGenderOne = pie(genderArrayOne);
-    const arcsGenderTwo = pie(genderArrayTwo);
     const arcsAgeOne = pie(ageArrayOne);
-    const arcsAgeTwo = pie(ageArrayTwo);
+    // const arcsGenderTwo = pie(genderArrayTwo);
+    // const arcsAgeTwo = pie(ageArrayTwo);
 
     // // Generate the pie pieces
     const arcGenerator = d3.arc()
@@ -69,34 +69,51 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     // Generate the Pie Charts
     // Pass in the SVG, the datasets, and the filter for the color: gender or age
     GeneratePieChart(genderSVGOne, arcsGenderOne, "gender", arcGenerator, color);
-    GeneratePieChart(genderSVGTwo, arcsGenderTwo, "gender", arcGenerator, color);
     GeneratePieChart(ageSVGOne, arcsAgeOne, "age", arcGenerator, color);
-    GeneratePieChart(ageSVGTwo, arcsAgeTwo, "age", arcGenerator, color);
+    // GeneratePieChart(genderSVGTwo, arcsGenderTwo, "gender", arcGenerator, color);
+    // GeneratePieChart(ageSVGTwo, arcsAgeTwo, "age", arcGenerator, color);
 }
 
 
 
 // ========= Helper Functions ===========
-function FilterByGenre(dataset, genre, country)
+
+function FilterByGenre(dataset, genre)
 /*  Returns a dataset that is filtered by genre 
     Dataset : Array Obj => One of the cleaned datasets 
     Genre : String => Genre Name
 */ {
     console.log(dataset);
+
+    var filteredSet = dataset.filter(d => {
+        // Filter the dataset by genres
+        const genreMatch = d.Genres == genre;
+
+        // console.log(`${genreMatch}, ${newUser}, ${countryMatch}`);
+        if (genreMatch) {
+            return true;
+        }
+        return false;
+    }
+    );
+    console.log(filteredSet)
+    return filteredSet;
+}
+
+function FilterByGenreCountry(dataset, genre, country)
+/*  Returns a dataset that is filtered by genre 
+    Dataset : Array Obj => One of the cleaned datasets 
+    Genre : String => Genre Name
+*/ {
+    // console.log(dataset);
     // Create a set; this is to clean any duplicate readers
     const dupUsers = new Set();
 
     var filteredSet = dataset.filter(d => {
         // Filter the dataset by genres
-        // GENRES NOT MATCHING FOR THE AGES
         const genreMatch = d.Genres == genre;
 
         const countryMatch = d.Country.toLowerCase().trim() == country.toLowerCase().trim();
-
-        // Remove any duplicate users who have been counted multiple times
-        // for the same genre
-        const userID = `${d.User_ID}`;
-        const newUser = !dupUsers.has(userID);
 
         // if(genreMatch) {
         //     // console.log(d);
@@ -106,8 +123,7 @@ function FilterByGenre(dataset, genre, country)
         // }
 
         // console.log(`${genreMatch}, ${newUser}, ${countryMatch}`);
-        if (genreMatch && newUser && countryMatch) {
-            dupUsers.add(userID);
+        if (genreMatch && countryMatch) {
             return true;
         }
         return false;
