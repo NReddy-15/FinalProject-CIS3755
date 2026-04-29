@@ -130,7 +130,6 @@ function CreatePieArrayByGender(dataset)
     );
 
     // console.table(genderArray);
-    // console.table(genderArray);
     return genderArray;
 }
 
@@ -139,8 +138,6 @@ function CreatePieArrayByAge(dataset)
     Dataset : Array Obj => An array of records
 */ {
 
-    // console.log("=====CREATE PIECHART BY AGE======");
-    // console.log(dataset);
     // console.log("=====CREATE PIECHART BY AGE======");
     // console.log(dataset);
     const counts = d3.rollup(
@@ -154,7 +151,7 @@ function CreatePieArrayByAge(dataset)
         counts,
         ([age, count]) => ({ age, count })
     );
-
+    
     // console.table(ageArray);
     return ageArray;
 }
