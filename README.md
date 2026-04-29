@@ -29,6 +29,11 @@ The first two visualizations are pie charts showcasing the global gender distrib
 
 The other two visualizations showcase the driving country for the observations. Based on the number of records provided, users can dedicate their book to a specific country. 
 
+### Datasets References
+- Reader Gender: https://www.mdpi.com/2306-5729/6/8/83
+- Reader Ages: https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset
+- Middle Man - Link Books by Genre: https://drive.google.com/drive/folders/1qroO-ijf9vYMO_v4-w5ysJEE3boBSQ53
+
 ### Lessons Learned
 - Data Cleaning Challenges
   - Since demographic data on consumers is often hidden and restricted, I had a hard time finding the data.
