@@ -11,17 +11,13 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
 
     // Let's start by making a simply piechart display the reader's gender by genre first
     // Then sort again by specific country
-    // Let's start by making a simply piechart display the reader's gender by genre first
-    // Then sort again by specific country
 
-    // Create the PieChart Visual - Reference Lab 6
     // Create the PieChart Visual - Reference Lab 6
 
     // Start defining some constances
     const width = 400;
     const height = 400;
     const radius = Math.min(width, height) / 2;
-\
 
     // Generate the SVG for each pie chart!
     let genderSVGOne = GenerateSVG("#genderChartOne", width, height);
@@ -35,8 +31,6 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     let color = d3.scaleOrdinal()
         .range(colorScale)
 
-    // Define the pie pieces
-    const pie = d3.pie().value(d => d.count);
     // Define the pie pieces
     const pie = d3.pie().value(d => d.count);
 
@@ -76,7 +70,6 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     GenerateBarChart(readerAgeByCountry, "#ageChartTwo", width + 100, height + 100, color);
 
 }
-
 
 
 // ========= Helper Functions ===========
@@ -221,8 +214,8 @@ function GeneratePieChart(svg, arcData, colorFilter, arcGenerator, colorScale)
             // Check to see which piechart is created specifically
             const label = colorFilter == "gender" ? d.data.gender : d.data.Age_Group;
 
-            // Get the total records to calculate a percentage
-            const pct = total > 0 ? ((d.data.count / total) * 100).toFixed(1) : 0;
+            // Get the total records to calculate a percentage by 2 decimal points
+            const pct = total > 0 ? ((d.data.count / total) * 100).toFixed(2) : 0;
 
             // Display the tooltip ui with the info
             tooltip.html(`
@@ -245,12 +238,12 @@ function GeneratePieChart(svg, arcData, colorFilter, arcGenerator, colorScale)
     return svg;
 }
 
-
+// Reference lab 5
 function GenerateBarChart(dataset, idName, width, height, color) {
     // Clear any existing bar chart before re-rendering
     d3.select(idName).selectAll("*").remove();
 
-    // set up the margins
+    // set up the margins, use a list to make it easier to access later on and change some values
     const margin = { top: 20, right: 90, bottom: 40, left: 180 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
@@ -296,7 +289,7 @@ function GenerateBarChart(dataset, idName, width, height, color) {
         .attr("x", 0)
         .attr("y", d => y(d.country))
         .attr("width", d => x(d.count))
-        .attr("height", y.bandwidth())
+        .attr("height", y.bandwidth()) // Uses the counts as the height
         .attr("fill", d => {
             var colorRange = color.range()
             
@@ -328,6 +321,23 @@ function GenerateBarChart(dataset, idName, width, height, color) {
         .attr("fill", "#1f2937")
         .style("font-size", "28px")
         .text(d => d.count);
+
+    // Add the x-axis title
+    svg.append("text")
+        .attr("text-anchor", "middle") 
+        .attr("x", width - 350)           
+        .attr("y", innerHeight + 40)   
+        .style("font-size", "14px")
+        .text("Number of Records");
+
+    // add the y-axis title
+    svg.append("text")
+    .attr("text-anchor", "middle") 
+    .attr("x", width - 600)           
+    .attr("y", innerHeight - 200)   
+    .style("font-size", "14px")
+    .text("Countries");
+
 }
 
 function GenerateSVG(idName, width, height)

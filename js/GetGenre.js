@@ -7,7 +7,6 @@ function GetGenre(genre, minRankCountry, maxRankCountry){
     // minRankCountry = ['Spain', 0]
     // maxRankCountry = ["United States", 33]
 
-
     // Generate the popularity visual
     renderHexbin(genre);
 
