@@ -1,5 +1,5 @@
 async function GenerateDashboard(genre, countryOne, countryTwo) {
-    var readerAgesData = await d3.csv("../datasets/dashboard/Combined_BookRec_GenreToAge_V2.csv");
+    var readerAgesData = await d3.csv("../datasets/dashboard/Combined_BookRec_GenreToAge_V3.csv");
     var readerGenderData = await d3.csv("../datasets/dashboard/Combined_GlobalReader_GenreToGender_V3.csv");
 
     // Check if the data loads properly + filepath is correct
@@ -39,15 +39,15 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     // Hardcode the genre to be Romance
     // console.log("==============Filtered by Genre and Country ================");
     var readerGenderOne = FilterByGenre(readerGenderData, genre, countryOne);
-    var readerGenderTwo = FilterByGenre(readerGenderData, genre, countryTwo);
     var readerAgeOne = FilterByGenre(readerAgesData, genre, countryOne);
+    var readerGenderTwo = FilterByGenre(readerGenderData, genre, countryTwo);
     var readerAgeTwo = FilterByGenre(readerAgesData, genre, countryTwo);
 
-    console.log("=====Get the datasets filtered by genre and the country=====");
-    console.log(readerGenderOne);
-    console.log(readerAgeOne);
-    console.log(readerGenderTwo);
-    console.log(readerAgeTwo);
+    // console.log("=====Get the datasets filtered by genre and the country=====");
+    // console.log(readerGenderOne);
+    // console.log(readerAgeOne);
+    // console.log(readerGenderTwo);
+    // console.log(readerAgeTwo);
 
     // Create the data for the pie chart
     var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
@@ -82,7 +82,7 @@ function FilterByGenre(dataset, genre, country)
     Dataset : Array Obj => One of the cleaned datasets 
     Genre : String => Genre Name
 */ {
-    // console.log(dataset);
+    console.log(dataset);
     // Create a set; this is to clean any duplicate readers
     const dupUsers = new Set();
 
