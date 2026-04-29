@@ -136,7 +136,7 @@
                         matchedCountries.forEach(country => {
                             if (matchedCountriesRanking[country]) {
                                 matchedCountriesRanking[country] += 1;
-                            } else if (!matchedCountriesRanking[country]) {
+                            } else {
                                 matchedCountriesRanking[country] = 1;
                             }
                         })

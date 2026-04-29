@@ -21,27 +21,23 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
 
     // Generate the SVG for each pie chart!
     let genderSVGOne = GenerateSVG("#genderChartOne", width, height);
-    let genderSVGTwo = GenerateSVG("#genderChartTwo", width, height);
     let ageSVGOne = GenerateSVG("#ageChartOne", width, height);
-    let ageSVGTwo = GenerateSVG("#ageChartTwo", width, height);
 
     // Set up a color scale, using the popularity color theme
-    var colorScale = ["#EBF5C6", "#9ED9B0", "#4CB1C2", "#2B6BA5", "#081D58"]
+    let colorScale = ["#EBF5C6", "#9ED9B0", "#4CB1C2", "#2B6BA5", "#081D58"]
 
     // const color = d3.scaleOrdinal(d3.schemeObservable10);
-    const color = d3.scaleOrdinal()
+    let color = d3.scaleOrdinal()
         .range(colorScale)
 
     // Define the pie pieces
     const pie = d3.pie().value(d => d.count);
 
-    // Get just a list of genders split by female and male
-    // Hardcode the genre to be Romance
     // console.log("==============Filtered by Genre and Country ================");
     var readerGenderOne = FilterByGenre(readerGenderData, genre);
     var readerAgeOne = FilterByGenre(readerAgesData, genre);
-    // var readerGenderTwo = FilterByGenreCountry(readerGenderData, genre, countryTwo);
-    // var readerAgeTwo = FilterByGenreCountry(readerAgesData, genre, countryTwo);
+    var recordsByCountry = GetRecordsByCountry(readerGenderOne);
+    console.log(recordsByCountry)
 
     // console.log("=====Get the datasets filtered by genre and the country=====");
     // console.log(readerGenderOne);
@@ -52,14 +48,11 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     // Create the data for the pie chart
     var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
     var ageArrayOne = CreatePieArrayByAge(readerAgeOne);
-    // var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
-    // var ageArrayTwo = CreatePieArrayByAge(readerAgeTwo);
+
 
     // Generate the arc genometry data
     const arcsGenderOne = pie(genderArrayOne);
     const arcsAgeOne = pie(ageArrayOne);
-    // const arcsGenderTwo = pie(genderArrayTwo);
-    // const arcsAgeTwo = pie(ageArrayTwo);
 
     // // Generate the pie pieces
     const arcGenerator = d3.arc()
@@ -70,8 +63,7 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     // Pass in the SVG, the datasets, and the filter for the color: gender or age
     GeneratePieChart(genderSVGOne, arcsGenderOne, "gender", arcGenerator, color);
     GeneratePieChart(ageSVGOne, arcsAgeOne, "age", arcGenerator, color);
-    // GeneratePieChart(genderSVGTwo, arcsGenderTwo, "gender", arcGenerator, color);
-    // GeneratePieChart(ageSVGTwo, arcsAgeTwo, "age", arcGenerator, color);
+    GenerateBarChart(recordsByCountry, width * 2, height * 2, color);
 }
 
 
@@ -83,7 +75,7 @@ function FilterByGenre(dataset, genre)
     Dataset : Array Obj => One of the cleaned datasets 
     Genre : String => Genre Name
 */ {
-    console.log(dataset);
+    // console.log(dataset);
 
     var filteredSet = dataset.filter(d => {
         // Filter the dataset by genres
@@ -100,40 +92,34 @@ function FilterByGenre(dataset, genre)
     return filteredSet;
 }
 
-function FilterByGenreCountry(dataset, genre, country)
-/*  Returns a dataset that is filtered by genre 
+function GetRecordsByCountry(dataset)
+/*  Returns a dataset that has the number of records by country
     Dataset : Array Obj => One of the cleaned datasets 
-    Genre : String => Genre Name
 */ {
-    // console.log(dataset);
-    // Create a set; this is to clean any duplicate readers
-    const dupUsers = new Set();
 
-    var filteredSet = dataset.filter(d => {
-        // Filter the dataset by genres
-        const genreMatch = d.Genres == genre;
+    // Store the key value pairs of country:count
+    const records = {};
 
-        const countryMatch = d.Country.toLowerCase().trim() == country.toLowerCase().trim();
+    dataset.forEach(d => {
+        var country = d.Country
 
-        // if(genreMatch) {
-        //     // console.log(d);
-        //     console.log(`Given Country ${d.Country.trim()}, Country to match ${country}`)
-        //     console.log(`Genre ${genreMatch}, Country: ${countryMatch}, ${genreMatch}`)
-
-        // }
-
-        // console.log(`${genreMatch}, ${newUser}, ${countryMatch}`);
-        if (genreMatch && countryMatch) {
-            return true;
+        if(records[country]) {
+            records[country] += 1;
+        } 
+        else {
+            records[country] = 1;
         }
-        return false;
-    }
-    );
+    })
 
-    // Check the filter sets to ensure it is good to go
-    // console.log(filteredSet);
-    // console.log(filteredSet);
-    return filteredSet;
+    // D3 is picky about our data, so convert it ot an array of objects, not a dicitonary
+    var results = Object.entries(records).map(([country, total]) => {
+        return {
+            country: country,
+            count: total
+        }
+    })
+    
+    return results;
 }
 
 function CreatePieArrayByGender(dataset)
@@ -247,6 +233,90 @@ function GeneratePieChart(svg, arcData, colorFilter, arcGenerator, colorScale)
     return svg;
 }
 
+
+function GenerateBarChart(dataset, width, height, color) {
+    // Clear any existing bar chart before re-rendering
+    d3.select("#countryBarChart").selectAll("*").remove();
+
+    // set up the margins
+    const margin = { top: 20, right: 90, bottom: 40, left: 180 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    // To showcase the country with the most records, filter it by the counnt
+    // Call the sort and basically for each pair, return the one that is larger and place on the top 
+    // of the sortedData first
+    const sortedData = dataset.sort((a, b) => b.count - a.count);
+
+    const svg = d3.select("#countryBarChart")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    // Create a scale for the x axis
+    const x = d3.scaleLinear()
+        .domain([0, d3.max(sortedData, d => d.count) || 0])
+        .range([0, innerWidth]);
+
+    // create a scale for the y-axis
+    const y = d3.scaleBand()
+        .domain(sortedData.map(d => d.country))
+        .range([0, innerHeight])
+        .padding(0.2);
+
+    // add the tick lines
+    svg.append("g")
+        .attr("transform", `translate(0, ${innerHeight})`)
+        .call(d3.axisBottom(x).ticks(8).tickFormat(d3.format("d")));
+
+    // Shift the country labels to the left of the chart
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+    // Generate the bars with the newly sorted data
+    svg.selectAll(".bar")
+        .data(sortedData)
+        .join("rect")
+        .attr("class", "bar")
+        .attr("x", 0)
+        .attr("y", d => y(d.country))
+        .attr("width", d => x(d.count))
+        .attr("height", y.bandwidth())
+        .attr("fill", d => {
+            var colorRange = color.range()
+            
+            if(d.count > 100) {
+                return colorRange[4];
+            } else if ( d.count > 50) {
+                return colorRange[3];
+            } else if ( d. count > 25) {
+                return colorRange[2];
+            } else if (d.count > 10){
+                return colorRange[1];
+            } else {
+                return colorRange[0]
+            }
+        }
+        );
+
+        // var colorScale = ["#EBF5C6", "#9ED9B0", "#4CB1C2", "#2B6BA5", "#081D58"]
+
+
+    // Add value labels at the end of each horizontal bar
+    svg.selectAll(".bar-label")
+        .data(sortedData)
+        .join("text")
+        .attr("class", "bar-label")
+        .attr("x", d => x(d.count) + 6)
+        .attr("y", d => (y(d.country) || 0) + y.bandwidth() / 2)
+        .attr("dy", "0.35em")
+        .attr("fill", "#1f2937")
+        .style("font-size", "28px")
+        .text(d => d.count);
+}
+
 function GenerateSVG(idName, width, height)
 /* Generate the SVG canvas in the div section provided*/ {
     // console.log("=======I am generating my SVG, a canvas=========");
@@ -261,7 +331,5 @@ function GenerateSVG(idName, width, height)
         .attr("transform", `translate(${width / 2}, ${height / 2})`);
     return svg;
 }
-
-
 
 window.GenerateDashboard = GenerateDashboard;
