@@ -103,7 +103,7 @@
             });
     });
 
-    d3.csv("./data/top_1000_most_swapped_books.csv").then(data => {
+    d3.csv("./datasets/map/top_1000_most_swapped_books.csv").then(data => {
         // Collect unique genres (at least one occurrence)
         const genres = [...new Set(data.map(d => d.genre).filter(Boolean))].sort();
 
