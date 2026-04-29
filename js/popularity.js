@@ -127,6 +127,41 @@ function renderHexbin(selectedGenre) {
             .attr('y', 25)
             .text('Average Rating');
 
+        //Tool tip stuff
+        const tooltip = d3.select("#tooltip");
+
+        svg.append("g")
+            .attr("clip-path", "url(#clip)")
+            .selectAll("path")
+            .data(bins)
+            .join("path")
+                .attr("transform", d => `translate(${d.x},${d.y})`)
+                .attr("d", hexbin.hexagon())
+                .attr("fill", d => color(d.length))
+                .attr("stroke", "#fff")
+                .attr("stroke-width", "0.5")
+                .on("mouseover", function(event, d) {
+                    tooltip.style("opacity", 1);
+                    d3.select(this).attr("stroke", "#000").attr("stroke-width", "1.5");
+                })
+                .on("mousemove", function(event, d) {
+                    const avgRating = y.invert(d.y).toFixed(2);
+                    const approxRatings = Math.round(x.invert(d.x));
+
+                    tooltip
+                        .html(`
+                            <strong>Books in bin:</strong> ${d.length}<br/>
+                            <strong>Avg Rating:</strong> ${avgRating} stars<br/>
+                            <strong>Approx. Ratings:</strong> ${approxRatings.toLocaleString()}
+                        `)
+                        .style("left", (event.pageX + 15) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                })
+                .on("mouseleave", function() {
+                    tooltip.style("opacity", 0);
+                    d3.select(this).attr("stroke", "#fff").attr("stroke-width", "0.5");
+                });
+
     })
 }
 
