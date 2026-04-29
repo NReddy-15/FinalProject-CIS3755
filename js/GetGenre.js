@@ -1,6 +1,14 @@
 function GetGenre(genre, minRankCountry, maxRankCountry){
-    console.log(`=======GetGenre retrieved: ${genre}========`);
-    console.log(`High Ranking in ${maxRankCountry}\nLow Ranking in ${minRankCountry}`)
+    // console.log(`=======GetGenre retrieved: ${genre}========`);
+    // console.log(`High Ranking in ${maxRankCountry}\nLow Ranking in ${minRankCountry}`)
+
+    // VIVI - Hardcode the data
+    genre = "Fantasy"
+    minRankCountry = ['Colombia', 0]
+    maxRankCountry = ["United States", 33]
+
+
+    // Generate the popularity visual
     renderHexbin(genre);
 
     // Victoria : Add my function that will showcase

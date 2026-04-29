@@ -24,7 +24,7 @@
 <body>
 
     <div id="fullpage">
-        <div class="section active">
+        <div class="section">
             <div class="mapcontainer">
                 <svg id="mapgraph">
                 </svg>
@@ -100,21 +100,27 @@
         </div>
 
 
-        <div class="section">
+        <div class="section active">
             <div class="container">
                 <h1> Countries Comparison </h1>
-                <p id="displayGenre"> Let's compare how the readers look like in this genre! </p>
+                <h3 id="displayGenre"> Let's compare how the readers look like in this genre! 
+                    To start, select a genre from the map
+                </h3>
 
                 <div id="country_comparison">
                     <div id="countryOne">
                         <h1 id="countryOneName"></h1>
+                        <h3>Reader Gender Distribution</h3>
                         <div id="genderChartOne"></div>
+                         <h3>Reader Ages Distribution</h3>
                         <div id="ageChartOne"></div>
                     </div>
 
                     <div id="countryTwo">
                         <h1 id="countryTwoName"></h1>
+                        <h3>Reader Gender Distribution</h3>
                         <div id="genderChartTwo"></div>
+                         <h3>Reader Ages Distribution</h3>
                         <div id="ageChartTwo"></div>
                     </div>
                     <!-- fantasy, mytery, history, philosophy, science fiction, romance -->
@@ -147,7 +153,6 @@
         });
 
         GetGenre("All");
-        GenerateDashboard("Adventure", "United States", "Germany");
     </script>
 
 </body>
