@@ -23,7 +23,7 @@ function renderHexbin(selectedGenre) {
         .attr("height", height);
 
     d3.csv("./datasets/popularity/books_cleaned_genresV2.csv").then((data)=>{
-        // // console.log(data);
+        // console.log(data);
     
         const filteredData = data.filter(d => {
             if (!d.overarching_genre || d.overarching_genre.trim() === "") return false;

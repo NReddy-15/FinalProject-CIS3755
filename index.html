@@ -25,6 +25,8 @@
 
     <div id="fullpage">
         <div class="section">
+            <h1>Genres Around the World</h1>
+            <h3>Click on a genre to see which country has it popular</h3>
             <div class="mapcontainer">
                 <svg id="mapgraph">
                 </svg>
@@ -33,9 +35,13 @@
         </div>
 
         <div class="section">
+            <h1>Genre Popularity</h1>
+            <h3>Is it really popular? Or is it just the hype? Check out whether
+                the book reviews match the readers' reviews
+            </h3>
             <div class="container flexbox">
                 <svg id="hexbin" width="1100" height="700"></svg>
-                <div>
+                <!-- <div>
                     <div class="flexbox clearPanel">
                         <div class="innerFlex">
                             <button type="button" class="btn btn-primary btn-sm genreBtn"
@@ -91,28 +97,27 @@
 
                         </div>
                         <!-- fantasy, mystery, history, philosophy, science fiction, romance -->
-                    </div>
+                <!-- </div>
                     <div class="flexbox clearPanel">
                         Hi
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
 
         <div class="section active">
+            <h1> Countries Comparison </h1>
+            <h3 id="displayGenre"> Let's compare how the readers look like in this genre!
+                To start, select a genre from the map
+            </h3>
             <div class="container">
-                <h1> Countries Comparison </h1>
-                <h3 id="displayGenre"> Let's compare how the readers look like in this genre! 
-                    To start, select a genre from the map
-                </h3>
-
                 <div id="country_comparison">
                     <div id="countryOne">
                         <h1 id="countryOneName"></h1>
                         <h3>Reader Gender Distribution</h3>
                         <div id="genderChartOne"></div>
-                         <h3>Reader Ages Distribution</h3>
+                        <h3>Reader Ages Distribution</h3>
                         <div id="ageChartOne"></div>
                     </div>
 
@@ -120,17 +125,17 @@
                         <h1 id="countryTwoName"></h1>
                         <h3>Reader Gender Distribution</h3>
                         <div id="genderChartTwo"></div>
-                         <h3>Reader Ages Distribution</h3>
+                        <h3>Reader Ages Distribution</h3>
                         <div id="ageChartTwo"></div>
                     </div>
                     <!-- fantasy, mytery, history, philosophy, science fiction, romance -->
                 </div>
             </div>
         </div>
-   
+
     </div>
 
-    
+
     <script src="./js/GetGenre.js"></script>
     <script src="./js/dashboard.js"></script>
     <script src="./js/popularity.js"></script>

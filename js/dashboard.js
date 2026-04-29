@@ -43,6 +43,12 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
     var readerAgeOne = FilterByGenre(readerAgesData, genre, countryOne);
     var readerAgeTwo = FilterByGenre(readerAgesData, genre, countryTwo);
 
+    console.log("=====Get the datasets filtered by genre and the country=====");
+    console.log(readerGenderOne);
+    console.log(readerAgeOne);
+    console.log(readerGenderTwo);
+    console.log(readerAgeTwo);
+
     // Create the data for the pie chart
     var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
     var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
@@ -62,8 +68,6 @@ async function GenerateDashboard(genre, countryOne, countryTwo) {
 
     // Generate the Pie Charts
     // Pass in the SVG, the datasets, and the filter for the color: gender or age
-    console.log("Age arc data:", arcsAgeOne);
-    console.log("Age arc data Two:", arcsAgeTwo);
     GeneratePieChart(genderSVGOne, arcsGenderOne, "gender", arcGenerator, color);
     GeneratePieChart(genderSVGTwo, arcsGenderTwo, "gender", arcGenerator, color);
     GeneratePieChart(ageSVGOne, arcsAgeOne, "age", arcGenerator, color);
@@ -122,8 +126,8 @@ function CreatePieArrayByGender(dataset)
 
     Output {"Female": 8888, "Male": 7773}
 */ {
-    console.log("=====CREATE PIECHART BY GENDER======");
-    console.log(dataset);
+    // console.log("=====CREATE PIECHART BY GENDER======");
+    // console.log(dataset);
     const counts = d3.rollup(
         dataset,
         group => group.length,
@@ -144,8 +148,8 @@ function CreatePieArrayByAge(dataset)
     Dataset : Array Obj => An array of records
 */ {
 
-    console.log("=====CREATE PIECHART BY AGE======");
-    console.log(dataset);
+    // console.log("=====CREATE PIECHART BY AGE======");
+    // console.log(dataset);
     const counts = d3.rollup(
         dataset,
         group => group.length,
@@ -158,7 +162,7 @@ function CreatePieArrayByAge(dataset)
         ([Age_Group, count]) => ({ Age_Group, count })
     );
 
-    console.table(ageArray);
+    // console.table(ageArray);
     return ageArray;
 }
 
