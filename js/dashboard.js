@@ -1,122 +1,122 @@
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+async function GenerateDashboard(genre, countryOne, countryTwo) {
+    var readerAgesData = await d3.csv("../datasets/dashboard/Combined_BookRec_GenreToAge.csv");
+    var readerGenderData = await d3.csv("../datasets/dashboard/Combined_GlobalReader_GenreToGender_V2.csv");
 
-var readerAgesData = await d3.csv("../datasets/dashboard/Combined_BookRec_GenreToAge.csv");
-var readerGenderData = await d3.csv("../datasets/dashboard/Combined_GlobalReader_GenreToGender.csv");
-
-// Check if the data loads properly + filepath is correct
-// console.log("=========Log All Datasets==========");
-// console.log(readerAgesData);
-// console.log(readerGenderData);
-//console.table(dataset);
-
-
-// Let's start by making a simply piechart display the reader's gender by genre first
-// Then sort again by specific country
-
-// Create the PieChart Visual - Reference Lab 6
-
-// Start defining some constances
-const width = 400;
-const height = 400;
-const radius = Math.min(width, height) / 2;
-
-// Generate the SVG for each pie chart!
-let genderSVGOne = GenerateSVG("#genderChartOne", width, height);
-let genderSVGTwo = GenerateSVG("#genderChartTwo", width, height);
-let ageSVGOne = GenerateSVG("#ageChartOne", width, height);
-let ageSVGTwo = GenerateSVG("#ageChartTwo", width, height);
-
-// Set up a color scale
-const color = d3.scaleOrdinal(d3.schemeObservable10);
-
-// Define the pie pieces
-const pie = d3.pie().value(d => d.count); 
-
-// Get just a list of genders split by female and male
-// Hardcode the genre to be Romance
-// console.log("==============Filtered by Genre and Country ================");
-var readerGenderOne = FilterByGenre(readerGenderData, "Fantasy", "United States");
-var readerGenderTwo = FilterByGenre(readerGenderData, "Fantasy", "Germany");
-var readerAgeOne = FilterByGenre(readerAgesData, "Fantasy", "usa");
-var readerAgeTwo = FilterByGenre(readerAgesData, "Fantasy", "Germany");
+    // Check if the data loads properly + filepath is correct
+    // console.log("=========Log All Datasets==========");
+    // console.log(readerAgesData);
+    // console.log(readerGenderData);
+    //console.table(dataset);
 
 
-// Create the data for the pie chart
-var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
-var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
-var ageArrayOne = CreatePieArrayByAge(readerAgeOne);
-var ageArrayTwo = CreatePieArrayByAge(readerAgeTwo);
+    // Let's start by making a simply piechart display the reader's gender by genre first
+    // Then sort again by specific country
 
-// Generate the arc genometry data
-const arcsGenderOne = pie(genderArrayOne);
-const arcsGenderTwo = pie(genderArrayTwo);
-const arcsAgeOne = pie(ageArrayOne);
-const arcsAgeTwo = pie(ageArrayTwo);
+    // Create the PieChart Visual - Reference Lab 6
 
-// // Generate the pie pieces
-const arcGenerator = d3.arc()
-    .innerRadius(0)
-    .outerRadius(radius);
+    // Start defining some constances
+    const width = 400;
+    const height = 400;
+    const radius = Math.min(width, height) / 2;
 
-// Generate the Pie Charts
-// Pass in the SVG, the datasets, and the filter for the color: gender or age
-GeneratePieChart(genderSVGOne, arcsGenderOne, "gender");
-GeneratePieChart(genderSVGTwo, arcsGenderTwo, "gender");
-GeneratePieChart(ageSVGOne, arcsAgeOne, "age");
-GeneratePieChart(ageSVGTwo, arcsAgeTwo, "age");
+    // Generate the SVG for each pie chart!
+    let genderSVGOne = GenerateSVG("#genderChartOne", width, height);
+    let genderSVGTwo = GenerateSVG("#genderChartTwo", width, height);
+    let ageSVGOne = GenerateSVG("#ageChartOne", width, height);
+    let ageSVGTwo = GenerateSVG("#ageChartTwo", width, height);
+
+    // Set up a color scale
+    const color = d3.scaleOrdinal(d3.schemeObservable10);
+
+    // Define the pie pieces
+    const pie = d3.pie().value(d => d.count);
+
+    // Get just a list of genders split by female and male
+    // Hardcode the genre to be Romance
+    // console.log("==============Filtered by Genre and Country ================");
+    var readerGenderOne = FilterByGenre(readerGenderData, genre, countryOne);
+    var readerGenderTwo = FilterByGenre(readerGenderData, genre, countryTwo);
+    var readerAgeOne = FilterByGenre(readerAgesData, genre, countryOne);
+    var readerAgeTwo = FilterByGenre(readerAgesData, genre, countryTwo);
+
+
+    // Create the data for the pie chart
+    var genderArrayOne = CreatePieArrayByGender(readerGenderOne);
+    var genderArrayTwo = CreatePieArrayByGender(readerGenderTwo);
+    var ageArrayOne = CreatePieArrayByAge(readerAgeOne);
+    var ageArrayTwo = CreatePieArrayByAge(readerAgeTwo);
+
+    // Generate the arc genometry data
+    const arcsGenderOne = pie(genderArrayOne);
+    const arcsGenderTwo = pie(genderArrayTwo);
+    const arcsAgeOne = pie(ageArrayOne);
+    const arcsAgeTwo = pie(ageArrayTwo);
+
+    // // Generate the pie pieces
+    const arcGenerator = d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius);
+
+    // Generate the Pie Charts
+    // Pass in the SVG, the datasets, and the filter for the color: gender or age
+    GeneratePieChart(genderSVGOne, arcsGenderOne, "gender", arcGenerator, color);
+    GeneratePieChart(genderSVGTwo, arcsGenderTwo, "gender", arcGenerator, color);
+    GeneratePieChart(ageSVGOne, arcsAgeOne, "age", arcGenerator, color);
+    GeneratePieChart(ageSVGTwo, arcsAgeTwo, "age", arcGenerator, color);
+}
+
 
 
 // ========= Helper Functions ===========
-function FilterByGenre(dataset, genre, country) 
+function FilterByGenre(dataset, genre, country)
 /*  Returns a dataset that is filtered by genre 
     Dataset : Array Obj => One of the cleaned datasets 
     Genre : String => Genre Name
-*/
-{
+*/ {
     // console.log(dataset);
     // Create a set; this is to clean any duplicate readers
     const dupUsers = new Set();
 
-    var filteredSet = dataset.filter(d =>{
-            // Filter the dataset by genres
-            // GENRES NOT MATCHING FOR THE AGES
-            const genreMatch = d.Genres == genre;
+    var filteredSet = dataset.filter(d => {
+        // Filter the dataset by genres
+        // GENRES NOT MATCHING FOR THE AGES
+        const genreMatch = d.Genres == genre;
 
-            const countryMatch = d.Country.toLowerCase().trim() == country.toLowerCase().trim();
+        const countryMatch = d.Country.toLowerCase().trim() == country.toLowerCase().trim();
 
-            // Remove any duplicate users who have been counted multiple times
-            // for the same genre
-            const userID = `${d.User_ID}`;
-            const newUser = !dupUsers.has(userID);
-            
-            // if(genreMatch) {
-            //     // console.log(d);
-            //     console.log(`Given Country ${d.Country.trim()}, Country to match ${country}`)
-            //     console.log(`Genre ${genreMatch}, Country: ${countryMatch}, ${genreMatch}`)
+        // Remove any duplicate users who have been counted multiple times
+        // for the same genre
+        const userID = `${d.User_ID}`;
+        const newUser = !dupUsers.has(userID);
 
-            // }
+        // if(genreMatch) {
+        //     // console.log(d);
+        //     console.log(`Given Country ${d.Country.trim()}, Country to match ${country}`)
+        //     console.log(`Genre ${genreMatch}, Country: ${countryMatch}, ${genreMatch}`)
 
-            // console.log(`${genreMatch}, ${newUser}, ${countryMatch}`);
-            if(genreMatch && newUser && countryMatch) {
-                dupUsers.add(userID);
-                return true;
-            }
-            return false;
+        // }
+
+        // console.log(`${genreMatch}, ${newUser}, ${countryMatch}`);
+        if (genreMatch && newUser && countryMatch) {
+            dupUsers.add(userID);
+            return true;
         }
+        return false;
+    }
     );
 
     // Check the filter sets to ensure it is good to go
     // console.log(filteredSet);
+    // console.log(filteredSet);
     return filteredSet;
 }
 
-function CreatePieArrayByGender(dataset) 
+function CreatePieArrayByGender(dataset)
 /*  Creates a dictionary of the gender counts
     Dataset : Array Obj => An array of records
 
     Output {"Female": 8888, "Male": 7773}
-*/
-{
+*/ {
 
     const counts = d3.rollup(
         dataset,
@@ -133,11 +133,10 @@ function CreatePieArrayByGender(dataset)
     return genderArray;
 }
 
-function CreatePieArrayByAge(dataset) 
+function CreatePieArrayByAge(dataset)
 /*  Creates a dictionary of the gender counts
     Dataset : Array Obj => An array of records
-*/
-{
+*/ {
 
     // console.log("=====CREATE PIECHART BY AGE======");
     // console.log(dataset);
@@ -158,24 +157,33 @@ function CreatePieArrayByAge(dataset)
 }
 
 
-
 // Basic Generators 
-function GeneratePieChart(svg, arcData, colorFilter) {
+function GeneratePieChart(svg, arcData, colorFilter, arcGenerator, colorScale) 
+/* Generates the Pie Charts within the given SVG */
+{
     // console.log("======= I am generating a pie chart=======");
     svg.selectAll("path")
-        .data(arcData)  
+        .data(arcData)
         .join("path")
-        .attr("d", arcGenerator) 
-        .attr("fill", function (d) { return colorFilter == "gender" ?  color(d.data.gender) : color(d.data.age) })
+        .attr("d", arcGenerator)
+        .attr("fill", function (d) { return colorFilter == "gender" ? colorScale(d.data.gender) : colorScale(d.data.age) })
         .attr("stroke", "white")
-        .attr("stroke-width", 1);
-    
+        .attr("stroke-width", 1)
+        // .transition()
+        // .duration(750)
+        // .attrTween("d", arcTween)
+        ;
+
     return svg;
 }
 
-
-function GenerateSVG(idName, width, height) {
+function GenerateSVG(idName, width, height) 
+/* Generate the SVG canvas in the div section provided*/
+{
     // console.log("=======I am generating my SVG, a canvas=========");
+    // Clear any existing SVG elements to avoid duplicates
+    d3.select(idName).selectAll("*").remove();
+    
     let svg = d3.select(idName)
         .append("svg")
         .attr("width", width)
@@ -185,3 +193,7 @@ function GenerateSVG(idName, width, height) {
 
     return svg;
 }
+
+
+
+window.GenerateDashboard = GenerateDashboard;

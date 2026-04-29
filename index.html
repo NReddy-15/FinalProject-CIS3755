@@ -8,7 +8,8 @@
     <meta http-equiv="Expires" content="0" />
 
     <!-- import D3 Version 6 here or at the end of the body -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
@@ -23,7 +24,7 @@
 <body>
 
     <div id="fullpage">
-        <div class="section">
+        <div class="section active">
             <div class="mapcontainer">
                 <svg id="mapgraph">
                 </svg>
@@ -99,7 +100,7 @@
         </div>
 
 
-        <div class="section active">
+        <div class="section">
             <div class="container">
                 <h1> Countries Comparison </h1>
                 <p id="displayGenre"> Let's compare how the readers look like in this genre! </p>
@@ -127,9 +128,9 @@
    
     </div>
 
-
+    
     <script src="./js/GetGenre.js"></script>
-    <script type="module" src="./js/dashboard.js"></script>
+    <script src="./js/dashboard.js"></script>
     <script src="./js/popularity.js"></script>
     <script src="./js/map.js"></script>
 
@@ -150,6 +151,7 @@
         });
 
         GetGenre("All");
+        GenerateDashboard("Adventure", "United States", "Germany");
     </script>
 
 </body>
