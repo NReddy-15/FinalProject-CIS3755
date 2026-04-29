@@ -1,3 +1,7 @@
+.sectionHeader {
+    margin-left: 3rem;
+}
+
 .flexbox {
     display: flex;
     flex-direction: row;
