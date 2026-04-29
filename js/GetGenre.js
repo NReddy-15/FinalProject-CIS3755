@@ -1,4 +1,3 @@
-
 function GetGenre(genre){
     // console.log(`=======GetGenre retrieved: ${genre}========`);
     renderHexbin(genre);
@@ -6,6 +5,7 @@ function GetGenre(genre){
     // Victoria : Add my function that will showcase
     // the country that deems the selected genre as 
     // high ranking or low ranking from their users
+    GenerateDashboard(genre, "United States", "Germany");
 
     // Display the genre the user selected
     var genreDisplay = document.getElementById("displayGenre");
@@ -16,7 +16,7 @@ function GetGenre(genre){
     countryOne.innerHTML = `TESTING ONE: ${genre}`;
     countryTwo.innerHTML = `TESTING TWO: ${genre}`;
 
-    console.log(genreCountries);
+    // console.log(genreCountries);
 }
 
 // Make the function global it can be called
