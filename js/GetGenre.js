@@ -3,6 +3,10 @@ function GetGenre(genre){
     console.log(`=======GetGenre retrieved: ${genre}========`);
     renderHexbin(genre);
 
+    // Victoria : Add my function that will showcase
+    // the country that deems the selected genre as 
+    // high ranking or low ranking from their users
+
     var countryOne = document.getElementById("countryOneName");
     var countryTwo = document.getElementById("countryTwoName");
 
