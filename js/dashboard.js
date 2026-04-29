@@ -107,6 +107,7 @@ function FilterByGenre(dataset, genre, country)
 
     // Check the filter sets to ensure it is good to go
     // console.log(filteredSet);
+    // console.log(filteredSet);
     return filteredSet;
 }
 
@@ -129,6 +130,7 @@ function CreatePieArrayByGender(dataset)
     );
 
     // console.table(genderArray);
+    // console.table(genderArray);
     return genderArray;
 }
 
@@ -137,6 +139,8 @@ function CreatePieArrayByAge(dataset)
     Dataset : Array Obj => An array of records
 */ {
 
+    // console.log("=====CREATE PIECHART BY AGE======");
+    // console.log(dataset);
     // console.log("=====CREATE PIECHART BY AGE======");
     // console.log(dataset);
     const counts = d3.rollup(
