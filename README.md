@@ -1,2 +1,24 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=23493119&assignment_repo_type=AssignmentRepo)
-# Lab-9-Template
+# Book Trend Analysis
+The Book Trend Analysis is geared towards bookstore owners and authors who want to have an edge 
+at the book market. One way to get an edge is to understand the trends in the market,
+specifically the genre of books that have been popular. 
+
+For this analysis, there are three parts:
+1. Genre Popularity Map
+2. Popularity Review
+3. Reader Demographics
+
+# Running the Project
+No additional setup is required to run the project. 
+
+## Genre Popularity Map
+
+### Lessons Learned
+
+## Popularity Review
+
+### Lessons Learned
+
+## Reader Demographics
+
+### Lessons Learned
