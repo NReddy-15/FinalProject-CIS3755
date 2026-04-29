@@ -1,6 +1,13 @@
 function GetGenre(genre, minRankCountry, maxRankCountry){
     console.log(`=======GetGenre retrieved: ${genre}========`);
     console.log(`High Ranking in ${maxRankCountry}\nLow Ranking in ${minRankCountry}`)
+
+    // VIVI - Hardcode the data
+    // genre = "Mystery/Thriller"
+    // minRankCountry = ['Spain', 0]
+    // maxRankCountry = ["United States", 33]
+
+    // Generate the popularity visual
     renderHexbin(genre);
 
     // Victoria : Add my function that will showcase
@@ -10,12 +17,12 @@ function GetGenre(genre, minRankCountry, maxRankCountry){
 
     // Display the genre the user selected
     var genreDisplay = document.getElementById("displayGenre");
-    var countryOne = document.getElementById("countryOneName");
+    // var countryOne = document.getElementById("countryOneName");
     var countryTwo = document.getElementById("countryTwoName");
 
     genreDisplay.innerHTML = `Here are the readers based on the genre ${genre}`;
-    countryOne.innerHTML = `TESTING ONE: ${genre}`;
-    countryTwo.innerHTML = `TESTING TWO: ${genre}`;
+    // countryOne.innerHTML = `Highest Ranking: ${maxRankCountry[0]}`;
+    countryTwo.innerHTML = `Lowest Ranking: ${minRankCountry[0]}`;
 
     // console.log(genreCountries);
 }

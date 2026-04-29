@@ -103,7 +103,7 @@
             });
     });
 
-    d3.csv("./datasets/map/Cleaned_1000_Swapped_Books.csv").then(data => {
+    d3.csv("./datasets/map/Cleaned_1000_Swapped_Books_V2.csv").then(data => {
         // Collect unique genres (at least one occurrence)
         const genres = [...new Set(data.map(d => d.genre).filter(Boolean))].sort();
 
@@ -136,7 +136,7 @@
                         matchedCountries.forEach(country => {
                             if (matchedCountriesRanking[country]) {
                                 matchedCountriesRanking[country] += 1;
-                            } else if (!matchedCountriesRanking[country]) {
+                            } else {
                                 matchedCountriesRanking[country] = 1;
                             }
                         })
@@ -152,7 +152,6 @@
                         var maxPair = matchedCountriesPairs.reduce((prev, curr) => curr[1] > prev[1] ? curr : prev)
                         // check the current pair is less than the previous pair
                         var minPair = matchedCountriesPairs.reduce((prev, curr) => curr[1] < prev[1] ? curr : prev)
-
 
 
                         // Convert country names to numeric IDs

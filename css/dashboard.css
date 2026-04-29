@@ -1,6 +1,6 @@
 #country_comparison {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -11,17 +11,19 @@
 
 #country_comparison #countryOne, #countryTwo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 3rem;
 }
 
-#countryOne {
-    background-color: rgb(231, 116, 116);
+#countryOne div{
+    /* background-color: rgb(67, 121, 228); */
+    margin: 2rem;
 }
+
 #countryTwo {
-    background-color: rgb(70, 73, 201);
+    /* background-color: rgb(106, 241, 214); */
 }
 
 #genderChartOne, #genderChartTwo, #ageChartOne, #ageChartTwo{

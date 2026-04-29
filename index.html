@@ -25,6 +25,8 @@
 
     <div id="fullpage">
         <div class="section active">
+            <h1>Genres Around the World</h1>
+            <h3>Click on a genre to see which country it's popular in</h3>
             <div class="mapcontainer">
                 <svg id="mapgraph">
                 </svg>
@@ -33,98 +35,67 @@
         </div>
 
         <div class="section">
+            <h1>Genre Popularity</h1>
+            <h3>Is it really popular? Or is it just the hype? Check out whether
+                the book reviews match the readers' reviews
+            </h3>
+            <p>Hover over a hexchip to view more data</p>
             <div class="container flexbox">
                 <svg id="hexbin" width="1100" height="700"></svg>
                 <div>
-                    <div class="flexbox clearPanel">
-                        <div class="innerFlex">
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('All')">All</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Non-Fiction')">Non-Fiction</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Art/Literature')">Art/Literature</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Fantasy')">Fantasy</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Mystery/Thriller')">Mystery/Thriller</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Romance')">Romance</button>
-                        </div>
-                        <div class="innerFlex">
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Science Fiction')">Science Fiction</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Children')">Children</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Horror')">Horror</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Humor')">Humor</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Adventure')">Adventure</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Graphic Novels/Manga')">Graphic Novels/Manga</button>
-                            <br />
-                            <br />
-                            <button type="button" class="btn btn-primary btn-sm genreBtn"
-                                onclick="GetGenre('Other')">Other</button>
-
-                        </div>
-                        <!-- fantasy, mystery, history, philosophy, science fiction, romance -->
+                    <div id="tooltip" class="clearPanel" style="height:8rem;">
                     </div>
-                    <div id="tooltip" class="clearPanel" style="height:6rem;">
-                    </div>
-                </div>
+                </div> 
             </div>
         </div>
 
+
+        <br/>
 
         <div class="section">
+            <h1> Countries Comparison </h1>
+            <h3 id="displayGenre"> Let's compare how the readers look like in this genre!
+                To start, select a genre from the map
+            </h3>
+            <p>Note: The datasets used in this portion are outdated.
+                The observations made here are based on the trends found. For future improvement, 
+                we would like to continue recording the reader demographics, specially in broader countries.
+                The data cleaned for this section required 4 different datasets. 
+            </p>
             <div class="container">
-                <h1> Countries Comparison </h1>
-                <p id="displayGenre"> Let's compare how the readers look like in this genre! </p>
-
                 <div id="country_comparison">
+                    <h1 id="countryOneName">Global Reader Demographics</h1>
+
                     <div id="countryOne">
-                        <h1 id="countryOneName"></h1>
-                        <div id="genderChartOne"></div>
-                        <div id="ageChartOne"></div>
+                        <div>
+                            <h3>Global Reader Gender Distribution</h3>
+                            <div id="genderChartOne"></div>
+                        </div>
+                  
+                        <div>
+                            <h3>Global Reader Ages Distribution</h3>
+                            <div id="ageChartOne"></div>
+                        </div>
+
                     </div>
 
+
+                    <h3>But what countries are driving these numbers?</h3>
+                    
                     <div id="countryTwo">
-                        <h1 id="countryTwoName"></h1>
-                        <div id="genderChartTwo"></div>
-                        <div id="ageChartTwo"></div>
+                        <div>
+                            <h3>Gender Records by Country</h3>
+                            <div id="genderChartTwo"></div>
+                        </div>
+                        <div>
+                            <h3>Age Records By Country </h3>
+                            <div id="ageChartTwo"></div>
+                        </div>
                     </div>
-                    <!-- fantasy, mystery, history, philosophy, science fiction, romance -->
-                </div>
-                <div class="flexbox clearPanel">
-                    Hi
-                </div>
                 </div>
             </div>
         </div>
-   
+
     </div>
 
     
