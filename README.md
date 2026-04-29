@@ -8,6 +8,8 @@ For this analysis, there are three parts:
 2. Popularity Review
 3. Reader Demographics
 
+Dataset Sources: https://drive.google.com/drive/folders/1txonocNwhJM1L7uwY3kyu2Oz9PcjID99?usp=sharing
+
 # Running the Project
 No additional setup is required to run the project. 
 
