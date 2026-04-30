@@ -180,6 +180,38 @@ function renderHexbin(selectedGenre) {
                     d3.select(this).attr("stroke", "#fff").attr("stroke-width", "0.5");
                 });
 
+        const defs = svg.append("defs");
+
+        const linearGradient = defs.append("linearGradient")
+            .attr("id", "linear-gradient");
+
+        linearGradient.selectAll("stop")
+            .data(d3.range(10).map(i => ({ offset: `${i * 10}%`, color: d3.interpolateYlGnBu(i / 9) })))
+            .enter().append("stop")
+            .attr("offset", d => d.offset)
+            .attr("stop-color", d => d.color);
+
+        const legendWidth = 200;
+        const legendHeight = 15;
+
+        const legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", `translate(${width - legendWidth - 30}, ${-margin.top + 10})`); // Positioned at top-right
+
+        
+        legend.append("rect")
+            .attr("width", legendWidth)
+            .attr("height", legendHeight)
+            .style("fill", "url(#linear-gradient)");
+
+        legend.append("text")
+            .attr("x", 0)
+            .attr("y", 0)
+            .style("font-size", "12px")
+            .style("font-weight", "bold")
+            .text("Density (Books per Hex)");
+
+
     })
 }
 
