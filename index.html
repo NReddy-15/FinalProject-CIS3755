@@ -37,7 +37,8 @@
         <div class="section">
             <div class="sectionHeader">
                 <h1>Genres Around the World</h1>
-                <h3>Click on a genre to see which country it's popular in.</h3>
+                <h3>Click on a genre to highlight the countries that the genre is most popular in!</h3>
+                <p class="infoTag">Hover over a country to see its name</p>
             </div>
             <div class="mapcontainer">
                 <svg id="mapgraph">
@@ -52,7 +53,10 @@
                 <h3>Is it really popular? Or is it just the hype? Check out whether
                     the book reviews match the readers' reviews!
                 </h3>
-                <p>Hover over a hexchip to view more data.</p>
+                <p class="infoTag">Hover over a hexchip to view more data</p>
+                <p class="warningTag">Not all genres will have the information
+                    shown for each portion due to lack of data.
+                </p>
             </div>
             <div class="container flexbox">
                 <svg id="hexbin" width="1100" height="700"></svg>
@@ -79,10 +83,14 @@
                 <h3 id="displayGenre"> Let's compare how the readers look like in this genre!
                     To start, select a genre from the map.
                 </h3>
-                <p>Note: The datasets used in this portion are outdated.
+                <p class="infoTag">Hover over the pie charts to view the distribution of gender or age groups</p>
+                <p> Disclaimer: The datasets used in this portion are outdated (~2010-2012) due to restrictions and copyright.
                     The observations made here are based on the trends found. For future improvement, 
-                    we would like to continue recording the reader demographics, specially in broader countries.
-                    The data cleaned for this section required 4 different datasets. 
+                    further recording of anonymous reader demographics, specially in smaller countries.
+                    The data cleaned for this section required 4 different datasets.
+                </p>
+                <p class="warningTag">Not all genres will have the information 
+                    shown for each portion due to lack of data.
                 </p>
             </div>
             <div class="container">
@@ -103,7 +111,8 @@
                     </div>
 
 
-                    <h3>But what countries are driving these numbers?</h3>
+                    <h3>What countries are driving these numbers?</h3>
+                    <p class="warningTag">Not all genres will have the information shown for each portion due to lack of data. </p>
                     
                     <div id="countryTwo">
                         <div>
