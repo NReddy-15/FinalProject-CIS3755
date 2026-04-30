@@ -1,7 +1,8 @@
 (function () {
-    const width = 960;
+    const width = 900;
     const height = 500;
 
+    //Assign names to country based on their ID. Display name instead of ID when hovered over.
     const countryNames = {
         4: "Afghanistan", 8: "Albania", 12: "Algeria", 24: "Angola", 32: "Argentina",
         36: "Australia", 40: "Austria", 50: "Bangladesh", 56: "Belgium", 64: "Bhutan",
@@ -27,6 +28,7 @@
         12: "Algeria", 795: "Turkmenistan", CountryNames: null
     };
 
+    //Convert country names to ID, used to know which one to highlight.
     const countryIDs = {
         "Afghanistan": 4, "Albania": 8, "Algeria": 12, "Angola": 24, "Argentina": 32,
         "Australia": 36, "Austria": 40, "Bangladesh": 50, "Belgium": 56, "Bhutan": 64,
@@ -115,7 +117,7 @@
                 .attr("data-genre", genre)
                 .text(genre)
                 .on("click", function () {
-                    // Toggle active state
+                    //Toggle active state
                     const isActive = d3.select(this).classed("genre-btn--active");
                     d3.selectAll(".genre-btn").classed("genre-btn--active", false);
                     d3.selectAll(".country")
@@ -130,7 +132,7 @@
                             .map(d => d.most_popular_country.trim());
 
 
-                        // get the ranking between popular countries
+                        //Get the ranking between popular countries
                         const matchedCountriesRanking = {}
 
                         matchedCountries.forEach(country => {
