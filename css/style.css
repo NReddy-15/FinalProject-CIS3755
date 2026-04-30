@@ -24,40 +24,48 @@
 }
 
 .mapcontainer {
-    width: 100%;
     height: 100%;
+    max-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 #mapgraph {
+    flex: 1;
+    min-height: 0;
     width: 95%;
     max-width: 1100px;
-    height: auto;
-    display: block;
+}
+
+#genre-panel {
+    flex-shrink: 0;
 }
 
 #mapgraph .sphere {
-    fill: #111922 !important;
+    fill: #111922;
 }
 
 #mapgraph .graticule {
-    fill: none !important;
-    stroke: #1e2d3d !important;
-    stroke-width: 0.4 !important;
+    fill: none;
+    stroke: #1e2d3d;
+    stroke-width: 0.4;
 }
 
 #mapgraph .country {
-    fill: #B0E0B6 !important;
-    stroke: #081D58 !important;
-    stroke-width: 0.5 !important;
+    fill: #B0E0B6;
+    stroke: #081D58;
+    stroke-width: 0.5;
     transition: fill 0.2s ease;
     cursor: pointer;
 }
 
 #mapgraph .country:hover {
-    fill: #F6FBC6 !important;
+    fill: #F6FBC6;
 }
 
 #geomap-tooltip {
@@ -76,49 +84,49 @@
 }
 
 #genre-panel {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 1rem 0;
-  max-width: 1100px;
-  width: 95%;
-  margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    max-width: 1100px;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .genre-btn {
-  padding: 0.4rem 1rem;
-  border: 1px solid #B0E0B6;
-  border-radius: 20px;
-  background: transparent;
-  color: #e0d6c8;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+    padding: 0.4rem 1rem;
+    border: 1px solid #B0E0B6;
+    border-radius: 20px;
+    background: transparent;
+    color: #B0E0B6;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .genre-btn:hover {
-  background: #1e2d3d;
-  border-color: #F6FBC6;
+    background: #1e2d3d;
+    border-color: #F6FBC6;
 }
 
 .genre-btn--active {
-  background: #F6FBC6 !important;
-  border-color: #F6FBC6 !important;
-  color: #fff !important;
+    background: #F6FBC6;
+    border-color: #F6FBC6;
+    color: #fff;
 }
 
 #mapgraph .country--highlighted {
-  fill: #F6FBC6 !important;
+    fill: #F6FBC6;
 }
 
 #mapgraph .country--dimmed {
-  fill: #1a2635 !important;
-  opacity: 0.5;
+    fill: #1a2635;
+    opacity: 0.5;
 }
 
 /* Restore hover only on highlighted countries */
 #mapgraph .country--highlighted:hover {
-  fill: #f7c060 !important;
+    fill: #B0E0B6;
 }
 
 /***/
@@ -137,9 +145,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
@@ -185,7 +193,20 @@
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
-    40% {transform: translateY(-10px) rotate(45deg);}
-    60% {transform: translateY(-5px) rotate(45deg);}
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0) rotate(45deg);
+    }
+
+    40% {
+        transform: translateY(-10px) rotate(45deg);
+    }
+
+    60% {
+        transform: translateY(-5px) rotate(45deg);
+    }
 }
