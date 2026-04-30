@@ -1,6 +1,6 @@
 async function GenerateDashboard(genre, countryOne, countryTwo) {
-    var readerAgesData = await d3.csv("../datasets/dashboard/Combined_BookRec_GenreToAge_V3.csv");
-    var readerGenderData = await d3.csv("../datasets/dashboard/Combined_GlobalReader_GenreToGender_V3.csv");
+    var readerAgesData = await d3.csv("./datasets/dashboard/Combined_BookRec_GenreToAge_V3.csv");
+    var readerGenderData = await d3.csv("./datasets/dashboard/Combined_GlobalReader_GenreToGender_V3.csv");
 
     // Check if the data loads properly + filepath is correct
     // console.log("=========Log All Datasets==========");
