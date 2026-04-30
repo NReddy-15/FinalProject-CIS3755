@@ -134,15 +134,15 @@ function renderHexbin(selectedGenre) {
             totalRat+=+book.average_rating;
             totalCount+=+book.ratings_count;
         }
-        
+
         var averageRat = totalRat/subset.length;
         var averageCount = totalCount/subset.length;
 
         const averages = document.getElementById("dataAverages"); //d3.select("#dataAverages");
 
         console.log(averages.innerHTML);
-        averages.innerHTML = `<p>Overall Average Rating: ${averageRat.toFixed(2)}</p>
-                            <p>Overall Average Rating Count: ${averageCount.toFixed(0)}</p>`;
+        averages.innerHTML = `<p>Overall Average Rating: ${averageRat.toFixed(2)} / 5</p>
+                            <p>Overall Average Rating Count: ${averageCount.toFixed(0).toLocaleString()}</p>`;
 
 
         //Tool tip stuff
@@ -169,7 +169,7 @@ function renderHexbin(selectedGenre) {
                     tooltip
                         .html(`
                             <strong>Books in bin:</strong> ${d.length}<br/>
-                            <strong>Avg Rating:</strong> ${avgRating} stars<br/>
+                            <strong>Avg Rating:</strong> ${avgRating} / 5<br/>
                             <strong>Approx. Ratings:</strong> ${approxRatings.toLocaleString()}
                         `)
                         .style("left", (event.pageX + 15) + "px")
