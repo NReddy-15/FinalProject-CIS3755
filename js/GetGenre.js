@@ -1,6 +1,6 @@
-function GetGenre(genre, minRankCountry, maxRankCountry){
+function GetGenre(genre){
     console.log(`=======GetGenre retrieved: ${genre}========`);
-    console.log(`High Ranking in ${maxRankCountry}\nLow Ranking in ${minRankCountry}`)
+    // console.log(`High Ranking in ${maxRankCountry}\nLow Ranking in ${minRankCountry}`)
 
     // VIVI - Hardcode the data
     // genre = "Mystery/Thriller"
@@ -13,7 +13,7 @@ function GetGenre(genre, minRankCountry, maxRankCountry){
     // Victoria : Add my function that will showcase
     // the country that deems the selected genre as 
     // high ranking or low ranking from their users
-    GenerateDashboard(genre, maxRankCountry[0], minRankCountry[0]);
+    GenerateDashboard(genre);
 
     // Display the genre the user selected
     var genreDisplay = document.getElementById("displayGenre");

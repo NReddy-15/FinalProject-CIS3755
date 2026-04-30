@@ -167,7 +167,7 @@
 
 
                         // Call the GetGenre Function here as well
-                        GetGenre(genre, minPair, maxPair);
+                        GetGenre(genre);
                     }
                 })
         })
