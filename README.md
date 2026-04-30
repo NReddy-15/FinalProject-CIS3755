@@ -18,8 +18,23 @@ No additional setup is required to run the project.
 ### Lessons Learned
 
 ## Popularity Review
+The Popularity vs Quality hexbin chart uses a comprehensive dataset of books from Goodreads and takes the number of ratings and average rating. Based on the selected genre from the Genre Popularity Map, the chart will filter the list of books.
+
+Each hexagon represents a bin with an average rating and approximate number of ratings. This provides an informative look of where most books in the genre are concentrated.
+
+### Datasets Referenced
+- Books with Genres: https://www.kaggle.com/datasets/middlelight/goodreadsbookswithgenres
 
 ### Lessons Learned
+- Additional Dataset Searching
+  - In the original dataset that I had found, there were no genres listed. My first solution was to find a book API that would allow me to
+    fetch and store the genre for each book. However, it was difficult to find one that was free and properly functional. After some trial and
+    error, I decided to continue searching for datasets. I found another similar dataset with books from Goodreads with the genres.
+    
+- Genre Determination for Books
+  - In the dataset I found, each book was assigned a list of genres. I was not sure how to approach narrowing each list down to a single best
+    genre. To do this, I took the classifications that Victoria made based on her dataset and applied it to the most relevant genre for each
+    book to classify it.
 
 ## Reader Demographics
 The Reader Demographics takes 4 different datasets to combine reader age, reader gender, reader country, and favorite genre(s).
@@ -29,7 +44,7 @@ The first two visualizations are pie charts showcasing the global gender distrib
 
 The other two visualizations showcase the driving country for the observations. Based on the number of records provided, users can dedicate their book to a specific country. 
 
-### Datasets References
+### Datasets Referenced
 - Reader Gender: https://www.mdpi.com/2306-5729/6/8/83
 - Reader Ages: https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset
 - Middle Man - Link Books by Genre: https://drive.google.com/drive/folders/1qroO-ijf9vYMO_v4-w5ysJEE3boBSQ53
