@@ -24,15 +24,21 @@
 <body>
 
     <div id="fullpage">
-        <div class="section active">
-            <h1>Genres Around the World</h1>
-            <h3>Hover over the country to see country name</h3>
-            <h3>Click on a genre to see which country it's popular in</h3>
-            <p>Note: The datasets used in this portion is limited in scope.
-                The observations made here are based on a very small sample size of readers per country. For future improvements,
-                we would like to find a larger dataset that provide a larger sample size that records the book genre and the country
-                of the reader/buyer/reviewer.
-            </p>
+        <div id="title-section" class="section active">
+            <div class="hero-content">
+                <h1 class="main-title">Book Genre Trend Analysis</h1>
+                <div class="title-divider"></div>
+                <h2 class="sub-title">Exploring the who and what of reading.</h2>
+                <div class="scroll-indicator">
+                    <div class="arrow"></div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="sectionHeader">
+                <h1>Genres Around the World</h1>
+                <h3>Click on a genre to see which country it's popular in</h3>
+            </div>
             <div class="mapcontainer">
                 <svg id="mapgraph">
                 </svg>
@@ -41,11 +47,13 @@
         </div>
 
         <div class="section">
-            <h1>Genre Popularity</h1>
-            <h3>Is it really popular? Or is it just the hype? Check out whether
-                the book reviews match the readers' reviews
-            </h3>
-            <p>Hover over a hexchip to view more data</p>
+            <div class="sectionHeader">
+                <h1>Genre Popularity</h1>
+                <h3>Is it really popular? Or is it just the hype? Check out whether
+                    the book reviews match the readers' reviews
+                </h3>
+                <p>Hover over a hexchip to view more data</p>
+            </div>
             <div class="container flexbox">
                 <svg id="hexbin" width="1100" height="700"></svg>
                 <div>
@@ -59,15 +67,17 @@
         <br/>
 
         <div class="section">
-            <h1> Countries Comparison </h1>
-            <h3 id="displayGenre"> Let's compare how the readers look like in this genre!
-                To start, select a genre from the map
-            </h3>
-            <p>Note: The datasets used in this portion are outdated.
-                The observations made here are based on the trends found. For future improvement, 
-                we would like to continue recording the reader demographics, specially in broader countries.
-                The data cleaned for this section required 4 different datasets. 
-            </p>
+            <div class="sectionHeader">
+                <h1> Countries Comparison </h1>
+                <h3 id="displayGenre"> Let's compare how the readers look like in this genre!
+                    To start, select a genre from the map
+                </h3>
+                <p>Note: The datasets used in this portion are outdated.
+                    The observations made here are based on the trends found. For future improvement, 
+                    we would like to continue recording the reader demographics, specially in broader countries.
+                    The data cleaned for this section required 4 different datasets. 
+                </p>
+            </div>
             <div class="container">
                 <div id="country_comparison">
                     <h1 id="countryOneName">Global Reader Demographics</h1>
