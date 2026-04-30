@@ -127,6 +127,24 @@ function renderHexbin(selectedGenre) {
             .attr('y', 25)
             .text('Average Rating');
 
+        //Averages div
+        var totalRat = 0;
+        var totalCount = 0;
+        for (const book of subset) {
+            totalRat+=+book.average_rating;
+            totalCount+=+book.ratings_count;
+        }
+        
+        var averageRat = totalRat/subset.length;
+        var averageCount = totalCount/subset.length;
+
+        const averages = document.getElementById("dataAverages"); //d3.select("#dataAverages");
+
+        console.log(averages.innerHTML);
+        averages.innerHTML = `<p>Overall Average Rating: ${averageRat.toFixed(2)}</p>
+                            <p>Overall Average Rating Count: ${averageCount.toFixed(0)}</p>`;
+
+
         //Tool tip stuff
         const tooltip = d3.select("#tooltip");
 

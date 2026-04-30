@@ -37,7 +37,7 @@
         <div class="section">
             <div class="sectionHeader">
                 <h1>Genres Around the World</h1>
-                <h3>Click on a genre to see which country it's popular in</h3>
+                <h3>Click on a genre to see which country it's popular in.</h3>
             </div>
             <div class="mapcontainer">
                 <svg id="mapgraph">
@@ -50,14 +50,21 @@
             <div class="sectionHeader">
                 <h1>Genre Popularity</h1>
                 <h3>Is it really popular? Or is it just the hype? Check out whether
-                    the book reviews match the readers' reviews
+                    the book reviews match the readers' reviews!
                 </h3>
-                <p>Hover over a hexchip to view more data</p>
+                <p>Hover over a hexchip to view more data.</p>
             </div>
             <div class="container flexbox">
                 <svg id="hexbin" width="1100" height="700"></svg>
                 <div>
-                    <div id="tooltip" class="clearPanel" style="height:8rem;">
+                    <div id="averages" class="clearPanel" style="height:8rem; width:15rem;">
+                        <h5>Genre Averages:</h5>
+                        <div id="dataAverages">
+                            <p>Overall Average Rating: </p>
+                            <p>Overall Average Rating Count: </p>
+                        </div>
+                    </div>
+                    <div id="tooltip" class="clearPanel" style="height:6rem; width:15rem;">
                     </div>
                 </div> 
             </div>
@@ -70,7 +77,7 @@
             <div class="sectionHeader">
                 <h1> Countries Comparison </h1>
                 <h3 id="displayGenre"> Let's compare how the readers look like in this genre!
-                    To start, select a genre from the map
+                    To start, select a genre from the map.
                 </h3>
                 <p>Note: The datasets used in this portion are outdated.
                     The observations made here are based on the trends found. For future improvement, 
