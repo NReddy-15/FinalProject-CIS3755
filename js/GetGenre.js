@@ -22,7 +22,7 @@ function GetGenre(genre, minRankCountry, maxRankCountry){
 
     genreDisplay.innerHTML = `Here are the readers based on the genre ${genre}`;
     // countryOne.innerHTML = `Highest Ranking: ${maxRankCountry[0]}`;
-    countryTwo.innerHTML = `Lowest Ranking: ${minRankCountry[0]}`;
+    // countryTwo.innerHTML = `Lowest Ranking: ${minRankCountry[0]}`;
 
     // console.log(genreCountries);
 }
