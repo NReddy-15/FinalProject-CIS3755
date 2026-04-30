@@ -1,3 +1,12 @@
+/* Lil Tags  */
+.warningTag {
+    color: rgb(172, 46, 46);
+}
+
+.infoTag {
+    color: #2B6BA5;
+}
+
 #country_comparison {
     display: flex;
     flex-direction: column;
