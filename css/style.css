@@ -98,7 +98,7 @@
     border: 1px solid #B0E0B6;
     border-radius: 20px;
     background: transparent;
-    color: #e0d6c8;
+    color: #B0E0B6;
     font-size: 0.85rem;
     cursor: pointer;
     transition: background 0.2s ease, border-color 0.2s ease;
@@ -126,7 +126,7 @@
 
 /* Restore hover only on highlighted countries */
 #mapgraph .country--highlighted:hover {
-    fill: #f7c060;
+    fill: #B0E0B6;
 }
 
 /***/
