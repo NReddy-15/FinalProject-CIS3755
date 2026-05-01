@@ -14,8 +14,19 @@ Dataset Sources: https://drive.google.com/drive/folders/1txonocNwhJM1L7uwY3kyu2O
 No additional setup is required to run the project. 
 
 ## Genre Popularity Map
+The Genre popularity map uses a geomap to show the most countries where a genre is popular. Genres are selected and deselected using buttons, which once clicked will highlight countries where the genre is popular. Hovering over a country will show the name of the country.
+
+### Datasets Referenced
+- Book Swapped: https://www.kaggle.com/datasets/sergiykovalchuck/the-most-popular-books-for-exchanging
 
 ### Lessons Learned
+- Finding Needed Data
+    - Finding datasets for books with their genre and review score was not complex. Datasets that contain genre and the country the reviewer/buyer is nonexistent to the public. These datasets are locked behind paywalls, with alternatives being difficult to find.
+
+- Geomap
+    - First, making the map quite difficult. Finding the right script to use, and linking it to properly generate the map was more tedious then I thought, I had to run command lines in google dev tool to debug and find the issues (data that generate the map wasn't being properly passed through), but once I fixed it properly rendered.
+    - Once rendered I the country does not properly display in the mouseover, just the ID number, so I created a list that has Country ID and Country Name pairs to have the names proper displayed when hovered on most of the countries.
+    - To know which country had to be highlighted I had to make another list that has the same pair as the previous one but in reverse (Country Name and Country ID) so the proper country is hovered when the genre button is clicked.
 
 ## Popularity Review
 The Popularity vs Quality hexbin chart uses a comprehensive dataset of books from Goodreads and takes the number of ratings and average rating. Based on the selected genre from the Genre Popularity Map, the chart will filter the list of books.
